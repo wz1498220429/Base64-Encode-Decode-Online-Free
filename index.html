@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ════════════════════════════════════════════════
+         SEO: Title + Meta Description
+         ════════════════════════════════════════════════ -->
+    <title>Base64 Encode Decode Online Free - Encode & Decode Base64 Text</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Base64 encoder and decoder. Encode text to Base64, decode Base64 to text, convert files to Base64 data URIs, and use URL-safe Base64URL. No signup, no server upload.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yoursite.com/base64-encode-decode">
+
+    <meta property="og:title" content="Base64 Encode Decode Online Free - Instant Tool">
+    <meta property="og:description" content="Free online Base64 encoder and decoder. Encode text, decode Base64, convert files to data URIs. No signup required.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Base64 Encode Decode Online Free">
+
+    <!-- ════════════════════════════════════════════════
+         内联 CSS — 零外部依赖
+         ════════════════════════════════════════════════ -->
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background:#f6f8fa;color:#1a1a2e;line-height:1.7;min-height:100vh
+        }
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{max-width:860px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:36px 0 28px;text-align:center}
+        header h1{font-size:clamp(1.35rem,4vw,1.8rem);font-weight:700;margin-bottom:6px}
+        header p{font-size:.92rem;opacity:.85;max-width:620px;margin:0 auto}
+        main{padding:28px 0 40px}
+        section{margin-bottom:28px}
+
+        .card{
+            background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);
+            padding:24px 22px;margin-bottom:24px
+        }
+        .card h2{font-size:1.05rem;font-weight:600;margin-bottom:14px;color:#1a1a2e}
+        .card-title{font-size:1.05rem;font-weight:600;margin-bottom:14px;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+
+        /* ── Toolbar pills ── */
+        .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+        .pill{
+            padding:6px 14px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;
+            font-size:.82rem;font-weight:500;cursor:pointer;transition:all .15s;color:#475569
+        }
+        .pill:hover{border-color:#2563eb;color:#2563eb}
+        .pill.active{background:#2563eb;border-color:#2563eb;color:#fff}
+
+        /* ── Tab bar ── */
+        .tab-bar{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e2e8f0}
+        .tab-btn{
+            flex:1;padding:9px 14px;text-align:center;cursor:pointer;font-weight:600;font-size:.85rem;
+            color:#64748b;background:transparent;border:none;border-bottom:2px solid transparent;
+            margin-bottom:-2px;transition:all .2s
+        }
+        .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+        .tab-btn:hover:not(.active){color:#334155}
+
+        /* ── Live toggle ── */
+        .live-toggle{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#64748b;margin-bottom:10px}
+        .switch{position:relative;width:36px;height:20px;cursor:pointer}
+        .switch input{opacity:0;width:0;height:0}
+        .slider{position:absolute;top:0;left:0;right:0;bottom:0;background:#cbd5e1;border-radius:10px;transition:.2s}
+        .slider::before{content:"";position:absolute;width:16px;height:16px;left:2px;bottom:2px;background:#fff;border-radius:50%;transition:.2s}
+        .switch input:checked+.slider{background:#2563eb}
+        .switch input:checked+.slider::before{transform:translateX(16px)}
+
+        /* ── Textarea ── */
+        .input-area{position:relative}
+        textarea{
+            width:100%;min-height:140px;padding:12px 14px;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;
+            font-size:.85rem;line-height:1.5;border:1px solid #d1d5db;border-radius:8px;
+            resize:vertical;transition:border-color .2s;background:#fafbfc
+        }
+        textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+        .textarea-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:.82rem;color:#475569}
+
+        .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+        .btn{
+            padding:9px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;
+            transition:all .12s;display:inline-flex;align-items:center;gap:5px
+        }
+        .btn-primary{background:#2563eb;color:#fff}
+        .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+        .btn-secondary{background:#e2e8f0;color:#334155}
+        .btn-secondary:hover{background:#cbd5e1}
+        .btn-success{background:#059669;color:#fff}
+        .btn-success:hover{background:#047857}
+        .btn-warning{background:#d97706;color:#fff}
+        .btn-warning:hover{background:#b45309}
+        .btn-sm{padding:5px 12px;font-size:.78rem}
+        .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+        .output-box{
+            background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;
+            padding:12px 14px;min-height:70px;font-family:monospace;font-size:.85rem;
+            word-break:break-all;line-height:1.5;white-space:pre-wrap;margin-top:6px
+        }
+        .char-count{font-size:.78rem;color:#64748b;margin-top:3px;text-align:right}
+
+        .copy-toast{
+            display:none;background:#059669;color:#fff;padding:6px 14px;border-radius:6px;
+            font-size:.78rem;font-weight:500;margin-top:6px;text-align:center;
+            position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;
+            box-shadow:0 2px 10px rgba(0,0,0,.15)
+        }
+        .copy-toast.show{display:block;animation:fadeInOut 2s}
+        @keyframes fadeInOut{
+            0%{opacity:0;transform:translateX(-50%) translateY(10px)}
+            15%{opacity:1;transform:translateX(-50%) translateY(0)}
+            75%{opacity:1;transform:translateX(-50%) translateY(0)}
+            100%{opacity:0;transform:translateX(-50%) translateY(-10px)}
+        }
+
+        .error-msg{color:#dc2626;font-size:.82rem;margin-top:5px;display:none}
+
+        /* ── File drop zone ── */
+        .drop-zone{
+            border:2px dashed #d1d5db;border-radius:10px;padding:24px;text-align:center;
+            cursor:pointer;transition:all .2s;background:#fafbfc;margin-top:8px
+        }
+        .drop-zone:hover,.drop-zone.dragover{border-color:#2563eb;background:#eff6ff}
+        .drop-zone p{font-size:.85rem;color:#64748b}
+        .drop-zone .icon{font-size:2rem;margin-bottom:6px}
+        .drop-zone .hint{font-size:.75rem;color:#94a3b8;margin-top:4px}
+        .drop-zone .file-info{display:none;margin-top:10px;padding:8px 12px;background:#e0f2fe;border-radius:6px;font-size:.82rem;color:#0369a1}
+
+        /* ── History ── */
+        .history-list{list-style:none}
+        .history-item{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:6px;font-size:.82rem
+        }
+        .history-item .preview{max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#475569}
+        .history-item .meta{font-size:.75rem;color:#94a3b8;white-space:nowrap}
+        .history-empty{color:#94a3b8;font-size:.85rem;text-align:center;padding:12px 0}
+        .history-actions{display:flex;gap:6px;margin-top:8px}
+
+        /* ── File output detail ── */
+        .file-output-detail{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin-top:8px;font-size:.82rem}
+        .file-output-detail .label{color:#475569;font-weight:500}
+        .file-output-detail .val{color:#059669;word-break:break-all;font-family:monospace;margin-top:2px}
+
+        /* ── FAQ ── */
+        .faq-item{border-bottom:1px solid #e2e8f0;padding:12px 0}
+        .faq-item:last-child{border-bottom:none}
+        .faq-q{font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a2e;font-size:.92rem}
+        .faq-q::after{content:"+";font-size:1.1rem;color:#94a3b8;transition:transform .2s}
+        .faq-q.open::after{content:"−"}
+        .faq-a{padding-top:8px;color:#475569;font-size:.88rem;line-height:1.6;display:none}
+        .faq-a.open{display:block}
+
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+
+        @media(max-width:600px){
+            .card{padding:16px 12px}
+            textarea{min-height:100px;font-size:.8rem}
+            .btn{padding:7px 14px;font-size:.8rem}
+            .btn-group{gap:6px}
+            .tab-btn{font-size:.8rem;padding:7px 8px}
+            .pill{padding:5px 10px;font-size:.78rem}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Base64 Encode Decode Online Free</h1>
+        <p>Encode text to Base64, decode Base64 to text, convert files to data URIs, and switch between standard Base64 and URL-safe Base64URL — all in your browser, nothing uploaded.</p>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- ================================================
+             核心功能卡片
+             ================================================ -->
+        <section class="card" aria-label="Base64 Encoder Decoder Tool">
+            <div class="card-title">🔐 Base64 Encoder / Decoder</div>
+
+            <!-- 工具栏：选择 Base64 变体 -->
+            <div class="toolbar" role="toolbar" aria-label="Base64 mode">
+                <button class="pill active" data-variant="standard" id="pill-standard">Standard Base64</button>
+                <button class="pill" data-variant="base64url" id="pill-base64url">Base64URL (JWT-safe)</button>
+            </div>
+
+            <!-- Tab: Encode / Decode -->
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-mode="encode" id="tab-encode">🔐 Encode</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="decode" id="tab-decode">🔓 Decode</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="auto" id="tab-auto">🔄 Auto Detect</button>
+            </div>
+
+            <!-- 实时转换开关 -->
+            <div class="live-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="live-switch">
+                    <span class="slider"></span>
+                </label>
+                <span>Live convert (auto-update as you type)</span>
+            </div>
+
+            <!-- 输入 -->
+            <div class="textarea-label">
+                <span id="input-label">Text to Encode</span>
+                <span id="char-count-display">0 characters</span>
+            </div>
+            <div class="input-area">
+                <textarea id="input-text" placeholder="Type or paste text here..." aria-label="Input text"></textarea>
+            </div>
+            <div class="char-count" id="mode-indicator" style="color:#2563eb;font-weight:500;margin-top:2px">Standard Base64</div>
+            <div class="error-msg" id="error-msg"></div>
+
+            <!-- 按钮 -->
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-convert">▶ Convert</button>
+                <button class="btn btn-secondary" id="btn-swap">⇄ Swap In/Out</button>
+                <button class="btn btn-secondary btn-sm" id="btn-clear">✕ Clear</button>
+                <button class="btn btn-success btn-sm" id="btn-copy">📋 Copy Result</button>
+            </div>
+
+            <!-- 输出 -->
+            <div class="textarea-label">
+                <span id="output-label">Encoded Result</span>
+            </div>
+            <div class="output-box" id="output-text" role="textbox" aria-readonly="true" tabindex="0">Result will appear here...</div>
+            <div class="char-count" id="output-char-count">0 characters</div>
+        </section>
+
+        <!-- ================================================
+             文件转 Base64 — 开发者高频需求
+             ================================================ -->
+        <section class="card" aria-label="File to Base64 Converter">
+            <div class="card-title">📁 File to Base64 — Data URI Generator</div>
+            <p style="font-size:.85rem;color:#64748b;margin-bottom:12px">Drop an image or file to generate its Base64 data URI — perfect for embedding in HTML, CSS, or JSON.</p>
+
+            <div class="drop-zone" id="drop-zone">
+                <div class="icon">📤</div>
+                <p><strong>Click to select</strong> or drag &amp; drop a file here</p>
+                <p class="hint">Supports images (PNG, JPG, SVG, GIF, WebP) and any file up to 10MB</p>
+                <div class="file-info" id="file-info"></div>
+                <input type="file" id="file-input" style="display:none" accept="*/*">
+            </div>
+
+            <div class="file-output-detail" id="file-output-detail">
+                <div class="label">📎 File name:</div>
+                <div class="val" id="file-name">—</div>
+                <div class="label" style="margin-top:6px">📦 File size:</div>
+                <div class="val" id="file-size">—</div>
+                <div class="label" style="margin-top:6px">🔗 Data URI (first 200 chars):</div>
+                <div class="val" id="file-data-uri" style="font-size:.78rem;max-height:80px;overflow-y:auto">—</div>
+                <div class="btn-group" style="margin-top:8px">
+                    <button class="btn btn-success btn-sm" id="btn-copy-datauri">📋 Copy Full Data URI</button>
+                    <button class="btn btn-secondary btn-sm" id="btn-clear-file">✕ Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             历史记录
+             ================================================ -->
+        <section class="card" aria-label="Conversion History">
+            <div class="card-title">📜 Recent Conversions</div>
+            <ul class="history-list" id="history-list">
+                <li class="history-empty">No conversions yet. Start encoding or decoding above.</li>
+            </ul>
+            <div class="history-actions">
+                <button class="btn btn-secondary btn-sm" id="btn-clear-history">🗑 Clear History</button>
+            </div>
+        </section>
+
+        <!-- ================================================
+             FAQ
+             ================================================ -->
+        <section class="card" aria-label="Frequently Asked Questions">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">What is Base64 encoding used for?</div>
+                <div class="faq-a">Base64 encoding converts binary data into ASCII text, making it safe for text-only systems like email (MIME), JSON/XML data transport, and data URIs in HTML &amp; CSS. It's also used in JWT tokens, API authentication headers, and storing binary data in databases that only support text.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">How to decode Base64 to text?</div>
+                <div class="faq-a">Switch this tool to "Decode" mode (or "Auto Detect"), paste your Base64 string, and click Convert. The tool decodes it back to the original text. Common use: inspect JWT payloads, decode API responses, or read encoded configuration values.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">What's the difference between Base64 and Base64URL?</div>
+                <div class="faq-a"><strong>Base64</strong> uses <code>+</code>, <code>/</code>, and <code>=</code> padding. <strong>Base64URL</strong> replaces <code>+</code> → <code>-</code>, <code>/</code> → <code>_</code>, and strips <code>=</code> padding, making it safe for URLs and filenames. JWT (JSON Web Tokens) uses Base64URL. You can switch between both modes using the pills above the input.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">How to encode an image to Base64?</div>
+                <div class="faq-a">Use the "File to Base64" section above. Drop your image (PNG, JPG, SVG, etc.) or click to select it. The tool generates a complete data URI that you can paste directly into <code>&lt;img src="data:image/png;base64,..."&gt;</code> or CSS <code>background-image: url()</code>. This reduces HTTP requests but increases page size — use it wisely for small icons.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">Is Base64 the same as encryption?</div>
+                <div class="faq-a"><strong>No.</strong> Base64 is encoding, not encryption. Anyone can decode it instantly — there is no secret key. Never use Base64 to protect sensitive data like passwords or private keys. For security, use actual encryption (AES, RSA). Base64 is for <em>compatibility</em>, not <em>confidentiality</em>.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">Why does Base64 output end with = or ==?</div>
+                <div class="faq-a">Base64 processes data in 3-byte chunks, producing 4 Base64 characters per chunk. When the input length isn't a multiple of 3, padding <code>=</code> characters are added to make the output a multiple of 4. One <code>=</code> means 1 byte of padding, <code>==</code> means 2 bytes. Base64URL mode strips these for cleaner URLs.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" role="button" tabindex="0">Is it safe to use online Base64 tools for sensitive data?</div>
+                <div class="faq-a">This tool runs entirely in your browser — <strong>zero data is sent to any server</strong>. Your text never leaves your computer. You can even save this page and use it fully offline. That said, avoid pasting passwords or API keys into any website you don't trust, and check the privacy policy of any tool you use.</div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>Base64 Encode Decode Online — All processing happens in-browser. Your data never leaves this device.</p>
+    </div>
+</footer>
+
+<!-- Toast -->
+<div class="copy-toast" id="copy-toast">✓ Copied!</div>
+
+<!-- ════════════════════════════════════════════════
+     JavaScript
+     ════════════════════════════════════════════════ -->
+<script>
+(function(){
+    'use strict';
+
+    /* ── DOM ── */
+    const $ = id => document.getElementById(id);
+
+    const dom = {
+        tabs:       document.querySelectorAll('.tab-btn'),
+        pills:      document.querySelectorAll('.pill'),
+        input:      $('input-text'),
+        output:     $('output-text'),
+        labelIn:    $('input-label'),
+        labelOut:   $('output-label'),
+        btnConv:    $('btn-convert'),
+        btnSwap:    $('btn-swap'),
+        btnClear:   $('btn-clear'),
+        btnCopy:    $('btn-copy'),
+        err:        $('error-msg'),
+        copyToast:  $('copy-toast'),
+        charCount:  $('char-count-display'),
+        outCount:   $('output-char-count'),
+        modeInd:    $('mode-indicator'),
+
+        // File
+        dropZone:   $('drop-zone'),
+        fileInput:  $('file-input'),
+        fileInfo:   $('file-info'),
+        fileDetail: $('file-output-detail'),
+        fileName:   $('file-name'),
+        fileSize:   $('file-size'),
+        fileDataUri:$('file-data-uri'),
+        btnCopyURI: $('btn-copy-datauri'),
+        btnClearFile:$('btn-clear-file'),
+
+        // History
+        histList:   $('history-list'),
+        btnClearHist:$('btn-clear-history'),
+
+        // Live
+        liveSwitch: $('live-switch'),
+    };
+
+    /* ── State ── */
+    let currentMode    = 'encode';     // encode | decode | auto
+    let currentVariant = 'standard';   // standard | base64url
+    let currentFile    = null;         // File object
+    let history        = JSON.parse(localStorage.getItem('b64_history') || '[]');
+    let liveTimeout    = null;
+
+    /* ── 工具函数 ── */
+    function btoaSafe(str) {
+        return btoa(str);
+    }
+    function atobSafe(str) {
+        return atob(str);
+    }
+    function toBase64(uint8) {
+        let binary = '';
+        for(let i = 0; i < uint8.length; i++) binary += String.fromCharCode(uint8[i]);
+        return btoa(binary);
+    }
+    function fromBase64(b64) {
+        const bin = atob(b64);
+        const bytes = new Uint8Array(bin.length);
+        for(let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
+    }
+
+    // Standard ↔ Base64URL conversion
+    function standardToBase64url(b64) {
+        return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+    function base64urlToStandard(b64url) {
+        let s = b64url.replace(/-/g, '+').replace(/_/g, '/');
+        while(s.length % 4) s += '=';
+        return s;
+    }
+
+    // Auto-detect: 判断字符串是 Base64 还是普通文本
+    function detectMode(text) {
+        if(!text) return 'encode';
+        const trimmed = text.trim();
+        // Base64 pattern: 只含 A-Za-z0-9+/= 或 Base64URL 字符 (-_)
+        const b64Pattern = /^[A-Za-z0-9+/=_-]+$/;
+        // 至少 8 个字符长，且全是 Base64 字符 -> 倾向 decode
+        if(trimmed.length >= 8 && b64Pattern.test(trimmed)) {
+            // 算一下 Base64 字符占比
+            const b64chars = trimmed.replace(/[^A-Za-z0-9+/=_-]/g, '').length;
+            if(b64chars / trimmed.length > 0.9) return 'decode';
+        }
+        return 'encode';
+    }
+
+    /* ── 核心转换 ── */
+    function convert(){
+        const raw = dom.input.value;
+        dom.err.style.display = 'none';
+        const mode = currentMode === 'auto' ? detectMode(raw) : currentMode;
+
+        if(!raw){
+            dom.output.textContent = 'Please enter text to ' + (mode === 'encode' ? 'encode' : 'decode') + '.';
+            dom.outCount.textContent = '0 characters';
+            return;
+        }
+
+        try {
+            let result;
+            if(mode === 'encode'){
+                const bytes = new TextEncoder().encode(raw);
+                let b64 = toBase64(bytes);
+                if(currentVariant === 'base64url') b64 = standardToBase64url(b64);
+                result = b64;
+            } else {
+                let clean = raw.replace(/\s/g, '');
+                if(currentVariant === 'base64url') clean = base64urlToStandard(clean);
+                else if(/^[A-Za-z0-9_-]+$/.test(clean) && clean.length % 4 !== 0) {
+                    // 可能是没有 padding 的 Base64URL，尝试转换
+                    clean = base64urlToStandard(clean);
+                }
+                result = fromBase64(clean);
+            }
+            dom.output.textContent = result;
+            dom.outCount.textContent = result.length + ' characters';
+
+            // 记录历史
+            addHistory(raw, result, mode === 'encode' ? 'Encode' : 'Decode');
+        } catch(e){
+            dom.err.style.display = 'block';
+            if(mode === 'decode'){
+                dom.err.textContent = 'Invalid Base64 string. Check your input and try again. (Note: standard Base64 vs Base64URL use different character sets — double-check the variant selected above.)';
+            } else {
+                dom.err.textContent = 'Encoding error: ' + e.message;
+            }
+            dom.output.textContent = 'Error — see message above.';
+            dom.outCount.textContent = '0 characters';
+        }
+
+        // 更新 mode 指示器
+        const modeLabel = mode === 'encode' ? 'Encode' : 'Decode';
+        const variantLabel = currentVariant === 'standard' ? 'Base64' : 'Base64URL';
+        dom.modeInd.textContent = `${variantLabel} · ${modeLabel}`;
+    }
+
+    /* ── Live convert ── */
+    function scheduleLive(){
+        if(liveTimeout) clearTimeout(liveTimeout);
+        if(dom.liveSwitch.checked){
+            liveTimeout = setTimeout(convert, 300);
+        }
+    }
+
+    /* ── Swap ── */
+    function swap(){
+        const out = dom.output.textContent;
+        if(!out || out === 'Result will appear here...' || out.startsWith('Error') || out.startsWith('Please')) return;
+        dom.input.value = out;
+        const newMode = currentMode === 'auto' ? 'auto' : (currentMode === 'encode' ? 'decode' : 'encode');
+        setMode(newMode);
+        convert();
+    }
+
+    /* ── Clear ── */
+    function clearAll(){
+        dom.input.value = '';
+        dom.output.textContent = 'Result will appear here...';
+        dom.err.style.display = 'none';
+        dom.charCount.textContent = '0 characters';
+        dom.outCount.textContent = '0 characters';
+        dom.modeInd.textContent = currentVariant === 'standard' ? 'Standard Base64' : 'Base64URL (JWT-safe)';
+    }
+
+    /* ── Copy ── */
+    function copyText(text, toastMsg){
+        navigator.clipboard.writeText(text).then(() => {
+            showToast(toastMsg || '✓ Copied!');
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast(toastMsg || '✓ Copied!');
+        });
+    }
+
+    function copyResult(){
+        const text = dom.output.textContent;
+        if(!text || text === 'Result will appear here...' || text.startsWith('Error') || text.startsWith('Please')) return;
+        copyText(text);
+    }
+
+    function showToast(msg){
+        dom.copyToast.textContent = msg;
+        dom.copyToast.classList.add('show');
+        setTimeout(() => dom.copyToast.classList.remove('show'), 2200);
+    }
+
+    /* ── 设置 mode ── */
+    function setMode(mode){
+        currentMode = mode;
+        dom.tabs.forEach(t => {
+            const active = t.dataset.mode === mode;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', active);
+        });
+        const isAuto = mode === 'auto';
+        dom.labelIn.textContent = isAuto ? 'Text to Convert (auto-detected)' :
+            (mode === 'encode' ? 'Text to Encode' : 'Base64 to Decode');
+        dom.labelOut.textContent = isAuto ? 'Converted Result' :
+            (mode === 'encode' ? 'Encoded Result' : 'Decoded Result');
+        dom.input.placeholder = isAuto ? 'Paste any text — I will detect and convert it...' :
+            (mode === 'encode' ? 'Type or paste text to encode...' : 'Paste Base64 string to decode...');
+        dom.err.style.display = 'none';
+    }
+
+    /* ── 设置 variant ── */
+    function setVariant(v){
+        currentVariant = v;
+        dom.pills.forEach(p => {
+            p.classList.toggle('active', p.dataset.variant === v);
+        });
+        dom.modeInd.textContent = v === 'standard' ? 'Standard Base64' : 'Base64URL (JWT-safe)';
+    }
+
+    /* ── History ── */
+    function addHistory(input, output, action){
+        const now = new Date();
+        const time = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        const preview = input.length > 40 ? input.slice(0, 40) + '...' : input;
+        history.unshift({ action, preview, time, variant: currentVariant });
+        if(history.length > 20) history.pop();
+        localStorage.setItem('b64_history', JSON.stringify(history));
+        renderHistory();
+    }
+
+    function renderHistory(){
+        if(!history.length){
+            dom.histList.innerHTML = '<li class="history-empty">No conversions yet. Start encoding or decoding above.</li>';
+            return;
+        }
+        dom.histList.innerHTML = history.map((h, i) =>
+            `<li class="history-item">
+                <span class="preview">${h.action === 'Encode' ? '🔐' : '🔓'} ${h.preview}</span>
+                <span class="meta">${h.action} · ${h.variant} · ${h.time}</span>
+            </li>`
+        ).join('');
+    }
+
+    function clearHistory(){
+        history = [];
+        localStorage.removeItem('b64_history');
+        renderHistory();
+    }
+
+    /* ── File handling ── */
+    function handleFile(file){
+        if(!file) return;
+        if(file.size > 10 * 1024 * 1024){
+            alert('File is too large. Maximum size is 10MB.');
+            return;
+        }
+        currentFile = file;
+
+        // 显示文件信息
+        dom.fileInfo.style.display = 'block';
+        dom.fileInfo.textContent = `📎 ${file.name}  ·  ${(file.size / 1024).toFixed(1)} KB`;
+
+        const reader = new FileReader();
+        reader.onload = function(e){
+            const dataUri = e.target.result;
+
+            // 显示到 textarea
+            dom.input.value = dataUri;
+            dom.charCount.textContent = dataUri.length + ' characters';
+
+            // 填充详情
+            dom.fileDetail.style.display = 'block';
+            dom.fileName.textContent = file.name;
+            dom.fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB (' + file.size + ' bytes)';
+            dom.fileDataUri.textContent = dataUri.length > 200 ? dataUri.slice(0, 200) + '...' : dataUri;
+
+            // 自动切换到 encode 模式 + 显示结果
+            setMode('encode');
+            setVariant('standard');
+            dom.output.textContent = dataUri;
+            dom.outCount.textContent = dataUri.length + ' characters';
+            dom.modeInd.textContent = 'Standard Base64 · Data URI';
+            addHistory(`[File] ${file.name}`, dataUri.length > 50 ? dataUri.slice(0,50)+'...' : dataUri, 'File→Base64');
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function clearFile(){
+        currentFile = null;
+        dom.fileInfo.style.display = 'none';
+        dom.fileInfo.textContent = '';
+        dom.fileDetail.style.display = 'none';
+        dom.fileInput.value = '';
+    }
+
+    /* ── Events ── */
+
+    // Tabs
+    dom.tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            setMode(btn.dataset.mode);
+            if(dom.liveSwitch.checked) convert();
+        });
+    });
+
+    // Pills
+    dom.pills.forEach(p => {
+        p.addEventListener('click', () => {
+            setVariant(p.dataset.variant);
+            if(dom.liveSwitch.checked) convert();
+        });
+    });
+
+    // Buttons
+    dom.btnConv.addEventListener('click', convert);
+    dom.btnSwap.addEventListener('click', swap);
+    dom.btnClear.addEventListener('click', clearAll);
+    dom.btnCopy.addEventListener('click', copyResult);
+
+    // Live switch
+    dom.liveSwitch.addEventListener('change', () => {
+        if(dom.liveSwitch.checked) convert();
+    });
+
+    // Input
+    dom.input.addEventListener('input', () => {
+        dom.charCount.textContent = dom.input.value.length + ' characters';
+        scheduleLive();
+    });
+    dom.input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); convert(); }
+    });
+
+    // File drop zone
+    dom.dropZone.addEventListener('click', () => dom.fileInput.click());
+    dom.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dom.dropZone.classList.add('dragover'); });
+    dom.dropZone.addEventListener('dragleave', () => dom.dropZone.classList.remove('dragover'));
+    dom.dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dom.dropZone.classList.remove('dragover');
+        if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+    dom.fileInput.addEventListener('change', () => {
+        if(dom.fileInput.files.length) handleFile(dom.fileInput.files[0]);
+    });
+
+    // File buttons
+    dom.btnCopyURI.addEventListener('click', () => {
+        if(currentFile){
+            // 从 output 复制
+            const uri = dom.output.textContent;
+            if(uri && uri.startsWith('data:')) copyText(uri, '✓ Data URI copied!');
+        }
+    });
+    dom.btnClearFile.addEventListener('click', clearFile);
+
+    // History
+    dom.btnClearHist.addEventListener('click', clearHistory);
+
+    // FAQ
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const a = q.nextElementSibling;
+            const open = a.classList.contains('open');
+            a.classList.toggle('open');
+            q.classList.toggle('open');
+            a.style.display = open ? 'none' : 'block';
+        });
+        q.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); q.click(); }
+        });
+    });
+
+    /* ── Init ── */
+    setMode('encode');
+    setVariant('standard');
+    renderHistory();
+
+    console.log('🧰 Base64 Tool loaded | Standard & Base64URL | File support | Live convert | History');
+})();
+</script>
+
+</body>
+</html>
