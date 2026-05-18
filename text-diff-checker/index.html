@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Text Diff Checker Online Free - Compare Two Texts Side by Side</title>
+    <meta name="description" content="Free online text diff checker. Compare two texts side by side and see the differences highlighted. Supports word diff, line diff, and character diff. No signup, works in browser.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/text-diff-checker">
+    <meta property="og:title" content="Text Diff Checker Online Free - Compare Two Texts">
+    <meta property="og:description" content="Free online text diff checker. Compare two texts side by side with highlighted differences. No signup, works in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devb64.com/text-diff-checker">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Text Diff Checker Online Free">
+    <meta name="twitter:description" content="Free online text diff checker. Compare two texts side by side with highlighted differences.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Text Diff Checker Online Free",
+        "url": "https://devb64.com/text-diff-checker",
+        "description": "Free online text diff checker. Compare two texts side by side and see the differences highlighted.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "JavaScript",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "author": {"@type": "Organization", "name": "devb64.com"}
+    }
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:#f6f8fa;color:#1a1a2e;line-height:1.7;min-height:100vh}
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+        .container{max-width:960px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:36px 0 28px;text-align:center}
+        header h1{font-size:clamp(1.35rem,4vw,1.8rem);font-weight:700;margin-bottom:6px}
+        header p{font-size:.92rem;opacity:.85;max-width:620px;margin:0 auto}
+        main{padding:28px 0 40px}
+        .card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:24px 22px;margin-bottom:24px}
+        .card h2{font-size:1.05rem;font-weight:600;margin-bottom:14px;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+        .tab-bar{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e2e8f0}
+        .tab-btn{flex:1;padding:9px 14px;text-align:center;cursor:pointer;font-weight:600;font-size:.85rem;color:#64748b;background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+        .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+        .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+        .btn{padding:9px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;transition:all .12s;display:inline-flex;align-items:center;gap:5px}
+        .btn-primary{background:#2563eb;color:#fff}.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+        .btn-secondary{background:#e2e8f0;color:#334155}.btn-secondary:hover{background:#cbd5e1}
+        .btn-success{background:#059669;color:#fff}.btn-success:hover{background:#047857}
+        .btn-sm{padding:5px 12px;font-size:.78rem}
+        textarea{width:100%;min-height:150px;padding:12px 14px;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;font-size:.82rem;line-height:1.5;border:1px solid #d1d5db;border-radius:8px;resize:vertical;transition:border-color .2s;background:#fafbfc}
+        textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+        .label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:.82rem;color:#475569}
+        .diff-container{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+        .diff-pane{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden}
+        .diff-pane-header{background:#f1f5f9;padding:8px 12px;font-weight:600;font-size:.82rem;color:#475569;border-bottom:1px solid #e2e8f0}
+        .diff-pane-content{font-family:monospace;font-size:.82rem;line-height:1.5;padding:8px 12px;white-space:pre-wrap;word-break:break-all;min-height:80px;max-height:500px;overflow:auto}
+        .diff-pane-content .diff-same{background:transparent}
+        .diff-pane-content .diff-added{background:#bbf7d0;color:#166534}
+        .diff-pane-content .diff-removed{background:#fecaca;color:#991b1b}
+        .diff-pane-content .diff-changed{background:#fef08a;color:#854d0e}
+        .diff-stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:#64748b;margin-top:10px;padding:8px 0}
+        .diff-stats span{padding:3px 10px;border-radius:4px}
+        .diff-stats .stat-added{background:#dcfce7;color:#166534}
+        .diff-stats .stat-removed{background:#fee2e2;color:#991b1b}
+        .diff-stats .stat-changed{background:#fef9c3;color:#854d0e}
+        .diff-stats .stat-same{background:#f1f5f9;color:#475569}
+        .swap-icon{display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#94a3b8;cursor:pointer;margin:4px 0}
+        .swap-icon:hover{color:#2563eb}
+        .copy-toast{display:none;background:#059669;color:#fff;padding:6px 14px;border-radius:6px;font-size:.78rem;font-weight:500;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+        .copy-toast.show{display:block;animation:fadeInOut 2s}
+        @keyframes fadeInOut{0%{opacity:0;transform:translateX(-50%) translateY(10px)}15%{opacity:1;transform:translateX(-50%) translateY(0)}75%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+        .resource-list{list-style:none;display:grid;gap:8px}
+        .resource-list li{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 16px;transition:box-shadow .15s}
+        .resource-list li:hover{box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .resource-list a{font-weight:500;font-size:.92rem}
+        .faq-item{border-bottom:1px solid #e2e8f0;padding:12px 0}
+        .faq-item:last-child{border-bottom:none}
+        .faq-q{font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a2e;font-size:.92rem}
+        .faq-q::after{content:"+";font-size:1.1rem;color:#94a3b8}
+        .faq-q.open::after{content:"-"}
+        .faq-a{padding-top:8px;color:#475569;font-size:.88rem;line-height:1.6;display:none}
+        .faq-a.open{display:block}
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+        @media(max-width:700px){.diff-container{grid-template-columns:1fr}.card{padding:16px 12px}textarea{min-height:100px}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Text Diff Checker Online Free</h1>
+        <p>Compare two texts side by side and instantly see the differences. Supports word-level and line-level diff. All processing happens in your browser.</p>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <section class="card">
+            <h2>Text Diff Checker</h2>
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-mode="lines" id="tab-lines">Line Diff</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="words" id="tab-words">Word Diff</button>
+            </div>
+            <div class="diff-container">
+                <div>
+                    <div class="label-row">
+                        <span>Original Text</span>
+                        <span id="char-count-a">0 chars</span>
+                    </div>
+                    <textarea id="text-a" placeholder="Paste original text here..." aria-label="Original text"></textarea>
+                </div>
+                <div>
+                    <div class="swap-icon" id="btn-swap" title="Swap texts">&#8646;</div>
+                    <div class="label-row">
+                        <span>Changed Text</span>
+                        <span id="char-count-b">0 chars</span>
+                    </div>
+                    <textarea id="text-b" placeholder="Paste changed text here..." aria-label="Changed text"></textarea>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-diff">Compare</button>
+                <button class="btn btn-secondary" id="btn-sample">Load Sample</button>
+                <button class="btn btn-secondary btn-sm" id="btn-clear">Clear</button>
+            </div>
+        </section>
+        <section class="card" id="results-section" style="display:none">
+            <h2>Comparison Results</h2>
+            <div class="diff-container">
+                <div class="diff-pane">
+                    <div class="diff-pane-header">Original</div>
+                    <div class="diff-pane-content" id="diff-a"></div>
+                </div>
+                <div class="diff-pane">
+                    <div class="diff-pane-header">Changed</div>
+                    <div class="diff-pane-content" id="diff-b"></div>
+                </div>
+            </div>
+            <div class="diff-stats" id="diff-stats">
+                <span class="stat-same" id="stat-same">Same: 0</span>
+                <span class="stat-added" id="stat-added">Added: 0</span>
+                <span class="stat-removed" id="stat-removed">Removed: 0</span>
+                <span class="stat-changed" id="stat-changed">Changed: 0</span>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What is a text diff?</div><div class="faq-a">A text diff (short for difference) is a comparison between two texts that highlights what has been added, removed, or changed. It is commonly used in version control systems (like Git), code review, and document comparison.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What is the difference between Line Diff and Word Diff?</div><div class="faq-a"><strong>Line Diff</strong> compares text line by line and works best for code and structured documents. <strong>Word Diff</strong> compares text word by word and is better for prose, paragraphs, and sentences where changes might be within a line.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">Is my data safe when using this tool?</div><div class="faq-a">Yes. All processing happens in your browser. Your text never leaves your device - no uploads, no servers, no storage.</div></div>
+        </section>
+        <section class="card">
+            <h2>More Developer Tools</h2>
+            <ul class="resource-list">
+                <li><a href="/">Base64 Encode Decode Online Free</a></li>
+                <li><a href="/timestamp-converter">Unix Timestamp Converter</a></li>
+                <li><a href="/json-formatter">JSON Formatter and Beautifier</a></li>
+                <li><a href="/url-encoder-decoder">URL Encoder / Decoder Online</a></li>
+                <li><a href="/hash-generator">MD5 / SHA256 Hash Generator</a></li>
+            </ul>
+        </section>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <p>Text Diff Checker - devb64.com. All processing happens in-browser.</p>
+    </div>
+</footer>
+<div class="copy-toast" id="copy-toast">Copied!</div>
+<script>
+(function(){
+    'use strict';
+    var dom = {
+        textA: document.getElementById('text-a'),
+        textB: document.getElementById('text-b'),
+        btnDiff: document.getElementById('btn-diff'),
+        btnSample: document.getElementById('btn-sample'),
+        btnClear: document.getElementById('btn-clear'),
+        btnSwap: document.getElementById('btn-swap'),
+        tabs: document.querySelectorAll('.tab-btn'),
+        charCountA: document.getElementById('char-count-a'),
+        charCountB: document.getElementById('char-count-b'),
+        diffA: document.getElementById('diff-a'),
+        diffB: document.getElementById('diff-b'),
+        results: document.getElementById('results-section'),
+        statSame: document.getElementById('stat-same'),
+        statAdded: document.getElementById('stat-added'),
+        statRemoved: document.getElementById('stat-removed'),
+        statChanged: document.getElementById('stat-changed'),
+        copyToast: document.getElementById('copy-toast'),
+    };
+    var currentMode = 'lines';
+
+    dom.tabs.forEach(function(btn){
+        btn.addEventListener('click', function(){
+            currentMode = btn.dataset.mode;
+            dom.tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.mode === currentMode); });
+        });
+    });
+
+    /* LCS-based diff algorithm */
+    function lcs(a, b){
+        var m = a.length, n = b.length;
+        var dp = Array(m + 1);
+        for(var i = 0; i <= m; i++){ dp[i] = Array(n + 1); dp[i][0] = 0; }
+        for(var j = 0; j <= n; j++) dp[0][j] = 0;
+        for(i = 1; i <= m; i++)
+            for(j = 1; j <= n; j++)
+                dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] + 1 : Math.max(dp[i-1][j], dp[i][j-1]);
+        var result = [];
+        i = m; j = n;
+        while(i > 0 || j > 0){
+            if(i > 0 && j > 0 && a[i-1] === b[j-1]){
+                result.unshift({type: 'same', val: a[i-1]});
+                i--; j--;
+            } else if(j > 0 && (i === 0 || dp[i][j-1] >= dp[i-1][j])){
+                result.unshift({type: 'added', val: b[j-1]});
+                j--;
+            } else {
+                result.unshift({type: 'removed', val: a[i-1]});
+                i--;
+            }
+        }
+        return result;
+    }
+
+    function computeDiff(){
+        var textA = dom.textA.value;
+        var textB = dom.textB.value;
+        dom.charCountA.textContent = textA.length + ' chars';
+        dom.charCountB.textContent = textB.length + ' chars';
+
+        if(!textA && !textB){
+            dom.results.style.display = 'none';
+            return;
+        }
+
+        var tokensA, tokensB;
+        if(currentMode === 'lines'){
+            tokensA = textA.split('\n');
+            tokensB = textB.split('\n');
+        } else {
+            tokensA = textA.split(/(\s+)/).filter(function(t){ return t !== ''; });
+            tokensB = textB.split(/(\s+)/).filter(function(t){ return t !== ''; });
+        }
+
+        var ops = lcs(tokensA, tokensB);
+
+        var htmlA = '', htmlB = '';
+        var same = 0, added = 0, removed = 0, changed = 0;
+
+        ops.forEach(function(op){
+            if(op.type === 'same'){
+                htmlA += '<span class="diff-same">' + escapeHtml(op.val) + '</span>';
+                htmlB += '<span class="diff-same">' + escapeHtml(op.val) + '</span>';
+                same++;
+            } else if(op.type === 'added'){
+                htmlA += '<span class="diff-removed"></span>';
+                htmlB += '<span class="diff-added">' + escapeHtml(op.val) + '</span>';
+                added++;
+            } else if(op.type === 'removed'){
+                htmlA += '<span class="diff-removed">' + escapeHtml(op.val) + '</span>';
+                htmlB += '<span class="diff-added"></span>';
+                removed++;
+            }
+        });
+
+        if(currentMode === 'lines'){
+            dom.diffA.innerHTML = htmlA.split('</span><span').join('</span>\n<span');
+            dom.diffB.innerHTML = htmlB.split('</span><span').join('</span>\n<span');
+        } else {
+            dom.diffA.innerHTML = htmlA;
+            dom.diffB.innerHTML = htmlB;
+        }
+
+        dom.results.style.display = 'block';
+        dom.statSame.textContent = 'Same: ' + same;
+        dom.statAdded.textContent = 'Added: ' + added;
+        dom.statRemoved.textContent = 'Removed: ' + removed;
+        dom.statChanged.textContent = 'Changed: ' + (added + removed);
+    }
+
+    function escapeHtml(str){
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    dom.btnDiff.addEventListener('click', computeDiff);
+    dom.btnSwap.addEventListener('click', function(){
+        var tmp = dom.textA.value;
+        dom.textA.value = dom.textB.value;
+        dom.textB.value = tmp;
+        computeDiff();
+    });
+
+    dom.btnClear.addEventListener('click', function(){
+        dom.textA.value = '';
+        dom.textB.value = '';
+        dom.charCountA.textContent = '0 chars';
+        dom.charCountB.textContent = '0 chars';
+        dom.results.style.display = 'none';
+    });
+
+    dom.btnSample.addEventListener('click', function(){
+        dom.textA.value = 'Hello, World!\nThis is the original text.\nIt has multiple lines.\nSome lines are unique.\nBase64 encoding is useful.\nThe quick brown fox jumps.';
+        dom.textB.value = 'Hello, World!\nThis is the changed text.\nIt has multiple lines.\nSome lines are different.\nBase64 encoding is amazing.\nThe lazy dog sleeps.';
+        computeDiff();
+    });
+
+    dom.textA.addEventListener('input', function(){ dom.charCountA.textContent = dom.textA.value.length + ' chars'; });
+    dom.textB.addEventListener('input', function(){ dom.charCountB.textContent = dom.textB.value.length + ' chars'; });
+
+    document.querySelectorAll('.faq-q').forEach(function(q){
+        q.addEventListener('click', function(){ q.classList.toggle('open'); q.nextElementSibling.classList.toggle('open'); });
+        q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();} });
+    });
+})();
+</script>
+</body>
+</html>
