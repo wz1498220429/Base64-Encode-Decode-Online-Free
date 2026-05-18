@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>URL Encoder Decoder Online Free - Encode Text for URLs</title>
+    <meta name="description" content="Free online URL encoder and decoder. Encode text for use in URLs, decode URL-encoded strings back to readable text. Supports UTF-8, form encoding, and batch conversion.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/url-encoder-decoder">
+
+    <meta property="og:title" content="URL Encoder Decoder Online Free - Encode Text for URLs">
+    <meta property="og:description" content="Free online URL encoder and decoder. Encode text to URL-safe format and decode URL-encoded strings instantly. No signup, works in browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devb64.com/url-encoder-decoder">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="URL Encoder Decoder Online Free">
+    <meta name="twitter:description" content="Free online URL encoder/decoder. Encode text for URLs, decode URL strings instantly.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "URL Encoder Decoder Online Free",
+        "url": "https://devb64.com/url-encoder-decoder",
+        "description": "Free online URL encoder and decoder. Encode text for use in URLs, decode URL-encoded strings back to readable text.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "JavaScript",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "author": {"@type": "Organization", "name": "devb64.com"}
+    }
+    </script>
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background:#f6f8fa;color:#1a1a2e;line-height:1.7;min-height:100vh
+        }
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{max-width:860px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:36px 0 28px;text-align:center}
+        header h1{font-size:clamp(1.35rem,4vw,1.8rem);font-weight:700;margin-bottom:6px}
+        header p{font-size:.92rem;opacity:.85;max-width:620px;margin:0 auto}
+        main{padding:28px 0 40px}
+
+        .card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:24px 22px;margin-bottom:24px}
+        .card h2{font-size:1.05rem;font-weight:600;margin-bottom:14px;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+
+        .tab-bar{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e2e8f0}
+        .tab-btn{
+            flex:1;padding:9px 14px;text-align:center;cursor:pointer;font-weight:600;font-size:.85rem;
+            color:#64748b;background:transparent;border:none;border-bottom:2px solid transparent;
+            margin-bottom:-2px;transition:all .2s
+        }
+        .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+        .tab-btn:hover:not(.active){color:#334155}
+
+        .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+        .btn{
+            padding:9px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;
+            transition:all .12s;display:inline-flex;align-items:center;gap:5px
+        }
+        .btn-primary{background:#2563eb;color:#fff}
+        .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+        .btn-secondary{background:#e2e8f0;color:#334155}
+        .btn-secondary:hover{background:#cbd5e1}
+        .btn-success{background:#059669;color:#fff}
+        .btn-success:hover{background:#047857}
+        .btn-sm{padding:5px 12px;font-size:.78rem}
+
+        textarea{
+            width:100%;min-height:140px;padding:12px 14px;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;
+            font-size:.85rem;line-height:1.5;border:1px solid #d1d5db;border-radius:8px;
+            resize:vertical;transition:border-color .2s;background:#fafbfc
+        }
+        textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+        .label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:.82rem;color:#475569}
+
+        .output-box{
+            background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;
+            padding:12px 14px;min-height:80px;font-family:monospace;font-size:.85rem;
+            word-break:break-all;line-height:1.5;white-space:pre-wrap;margin-top:6px
+        }
+        .error-msg{color:#dc2626;font-size:.82rem;margin-top:5px;display:none}
+
+        .char-count{font-size:.78rem;color:#64748b;margin-top:3px;text-align:right}
+
+        .live-toggle{display:flex;align-items:center;gap:8px;font-size:.82rem;color:#64748b;margin-bottom:10px}
+        .switch{position:relative;width:36px;height:20px;cursor:pointer}
+        .switch input{opacity:0;width:0;height:0}
+        .slider{position:absolute;top:0;left:0;right:0;bottom:0;background:#cbd5e1;border-radius:10px;transition:.2s}
+        .slider::before{content:"";position:absolute;width:16px;height:16px;left:2px;bottom:2px;background:#fff;border-radius:50%;transition:.2s}
+        .switch input:checked+.slider{background:#2563eb}
+        .switch input:checked+.slider::before{transform:translateX(16px)}
+
+        .copy-toast{
+            display:none;background:#059669;color:#fff;padding:6px 14px;border-radius:6px;
+            font-size:.78rem;font-weight:500;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+            z-index:999;box-shadow:0 2px 10px rgba(0,0,0,.15)
+        }
+        .copy-toast.show{display:block;animation:fadeInOut 2s}
+        @keyframes fadeInOut{
+            0%{opacity:0;transform:translateX(-50%) translateY(10px)}
+            15%{opacity:1;transform:translateX(-50%) translateY(0)}
+            75%{opacity:1;transform:translateX(-50%) translateY(0)}
+            100%{opacity:0;transform:translateX(-50%) translateY(-10px)}
+        }
+
+        .resource-list{list-style:none;display:grid;gap:8px}
+        .resource-list li{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 16px;transition:box-shadow .15s}
+        .resource-list li:hover{box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .resource-list a{font-weight:500;font-size:.92rem}
+
+        .faq-item{border-bottom:1px solid #e2e8f0;padding:12px 0}
+        .faq-item:last-child{border-bottom:none}
+        .faq-q{font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a2e;font-size:.92rem}
+        .faq-q::after{content:"+";font-size:1.1rem;color:#94a3b8}
+        .faq-q.open::after{content:"鈭?}
+        .faq-a{padding-top:8px;color:#475569;font-size:.88rem;line-height:1.6;display:none}
+        .faq-a.open{display:block}
+
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+
+        @media(max-width:600px){
+            .card{padding:16px 12px}
+            textarea{min-height:100px}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>URL Encoder Decoder Online Free</h1>
+        <p>Encode text to URL-safe format and decode URL-encoded strings back to readable text. Supports UTF-8 characters and application/x-www-form-urlencoded format.</p>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
+             鏍稿績宸ュ叿
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
+        <section class="card">
+            <h2>馃敆 URL Encoder / Decoder</h2>
+
+            <!-- 瀹炴椂杞崲寮€鍏?-->
+            <div class="live-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="live-switch" checked>
+                    <span class="slider"></span>
+                </label>
+                <span>Live (auto-convert as you type)</span>
+            </div>
+
+            <!-- Tab: Encode / Decode -->
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-mode="encode" id="tab-encode">馃攼 Encode</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="decode" id="tab-decode">馃敁 Decode</button>
+            </div>
+
+            <!-- 杈撳叆 -->
+            <div class="label-row">
+                <span id="input-label">Text to URL-Encode</span>
+                <span id="char-count">0 characters</span>
+            </div>
+            <textarea id="input-text" placeholder="Type or paste text here..." aria-label="Input text"></textarea>
+            <div class="error-msg" id="error-msg"></div>
+
+            <!-- 鎸夐挳 -->
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-convert">鈻?Convert</button>
+                <button class="btn btn-secondary" id="btn-swap">鈬?Swap</button>
+                <button class="btn btn-secondary btn-sm" id="btn-clear">鉁?Clear</button>
+            </div>
+
+            <!-- 杈撳嚭 -->
+            <div class="label-row">
+                <span id="output-label">URL-Encoded Result</span>
+                <button class="btn btn-sm btn-success" id="btn-copy" style="padding:4px 12px;font-size:.78rem;">馃搵 Copy</button>
+            </div>
+            <div class="output-box" id="output-text">Result will appear here...</div>
+            <div class="char-count" id="output-count">0 characters</div>
+            <div class="copy-toast" id="copy-toast">鉁?Copied to clipboard!</div>
+        </section>
+
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
+             甯歌瀛楃鍙傝€冭〃
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
+        <section class="card">
+            <h2>馃摉 Common URL Encoding Reference</h2>
+            <div style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+                <tr style="background:#f1f5f9"><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">Character</th><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">URL-Encoded</th><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">Character</th><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">URL-Encoded</th><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">Character</th><th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left">URL-Encoded</th></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">Space</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%20</td><td style="padding:6px 12px;border:1px solid #e2e8f0">!</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%21</td><td style="padding:6px 12px;border:1px solid #e2e8f0">"</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%22</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">#</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%23</td><td style="padding:6px 12px;border:1px solid #e2e8f0">$</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%24</td><td style="padding:6px 12px;border:1px solid #e2e8f0">%</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%25</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">&amp;</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%26</td><td style="padding:6px 12px;border:1px solid #e2e8f0">'</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%27</td><td style="padding:6px 12px;border:1px solid #e2e8f0">(</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%28</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">)</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%29</td><td style="padding:6px 12px;border:1px solid #e2e8f0">*</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%2A</td><td style="padding:6px 12px;border:1px solid #e2e8f0">+</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%2B</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">,</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%2C</td><td style="padding:6px 12px;border:1px solid #e2e8f0">-</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">-</td><td style="padding:6px 12px;border:1px solid #e2e8f0">.</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">.</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">/</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%2F</td><td style="padding:6px 12px;border:1px solid #e2e8f0">:</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3A</td><td style="padding:6px 12px;border:1px solid #e2e8f0">;</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3B</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">&lt;</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3C</td><td style="padding:6px 12px;border:1px solid #e2e8f0">=</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3D</td><td style="padding:6px 12px;border:1px solid #e2e8f0">&gt;</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3E</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">?</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%3F</td><td style="padding:6px 12px;border:1px solid #e2e8f0">@</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%40</td><td style="padding:6px 12px;border:1px solid #e2e8f0">[</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%5B</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">\</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%5C</td><td style="padding:6px 12px;border:1px solid #e2e8f0">]</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%5D</td><td style="padding:6px 12px;border:1px solid #e2e8f0">^</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%5E</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">{</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%7B</td><td style="padding:6px 12px;border:1px solid #e2e8f0">|</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%7C</td><td style="padding:6px 12px;border:1px solid #e2e8f0">}</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%7D</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #e2e8f0">~</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%7E</td><td style="padding:6px 12px;border:1px solid #e2e8f0">锛堜腑鏂囷級</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%E4%B8%AD%E6%96%87</td><td style="padding:6px 12px;border:1px solid #e2e8f0">锛堟棩璇級</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-family:monospace">%E6%97%A5%E8%AA%9E</td></tr>
+            </table>
+            </div>
+        </section>
+
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
+             FAQ
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
+        <section class="card">
+            <h2>鉂?Frequently Asked Questions</h2>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">Why do URLs need encoding?</div><div class="faq-a">URLs can only contain a limited set of ASCII characters (A-Z, a-z, 0-9, and a few special characters like -, _, ., ~). Characters like spaces, #, &, ?, %, and non-ASCII characters (Chinese, Japanese, emoji) must be encoded to be valid in URLs.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What's the difference between encodeURI and encodeURIComponent?</div><div class="faq-a"><code>encodeURI()</code> encodes a full URI while preserving characters that are part of the URI syntax (:, /, ?, #). <code>encodeURIComponent()</code> encodes everything, making it safe for use in query parameter values. This tool uses the more thorough encodeURIComponent/decodeURIComponent approach.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">How do I encode Chinese characters for a URL?</div><div class="faq-a">Chinese characters like "涓枃" are encoded as <code>%E4%B8%AD%E6%96%87</code> using UTF-8 percent-encoding. Just paste the text and click Encode 鈥?this tool handles UTF-8 characters automatically.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What is application/x-www-form-urlencoded?</div><div class="faq-a">It's the encoding used by HTML forms when submitted via POST. In this format, spaces are encoded as <code>+</code> instead of <code>%20</code>. This tool supports both formats: standard encodeURIComponent (<code>%20</code>) and form-encoding (<code>+</code> for spaces).</div></div>
+        </section>
+
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
+             鐩稿叧宸ュ叿
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
+        <section class="card">
+            <h2>馃敆 More Developer Tools</h2>
+            <ul class="resource-list">
+                <li><a href="/base64-encode-decode">Base64 Encode Decode Online Free</a></li>
+                <li><a href="/timestamp-converter">Unix Timestamp Converter</a></li>
+                <li><a href="/json-formatter">JSON Formatter &amp; Beautifier</a></li>
+                <li><a href="/hash-generator">MD5 / SHA256 Hash Generator</a></li>
+            </ul>
+        </section>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>URL Encoder Decoder 鈥?漏 devb64.com. All processing happens in-browser.</p>
+    </div>
+</footer>
+
+<script>
+(function(){
+    'use strict';
+
+    const dom = {
+        tabs: document.querySelectorAll('.tab-btn'),
+        input: document.getElementById('input-text'),
+        output: document.getElementById('output-text'),
+        labelIn: document.getElementById('input-label'),
+        labelOut: document.getElementById('output-label'),
+        btnConv: document.getElementById('btn-convert'),
+        btnSwap: document.getElementById('btn-swap'),
+        btnClear: document.getElementById('btn-clear'),
+        btnCopy: document.getElementById('btn-copy'),
+        err: document.getElementById('error-msg'),
+        charCount: document.getElementById('char-count'),
+        outCount: document.getElementById('output-count'),
+        liveSwitch: document.getElementById('live-switch'),
+        copyToast: document.getElementById('copy-toast'),
+    };
+
+    let currentMode = 'encode';
+
+    function setMode(mode){
+        currentMode = mode;
+        dom.tabs.forEach(t => {
+            const active = t.dataset.mode === mode;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', active);
+        });
+        dom.labelIn.textContent = mode === 'encode' ? 'Text to URL-Encode' : 'URL-Encoded String to Decode';
+        dom.labelOut.textContent = mode === 'encode' ? 'URL-Encoded Result' : 'Decoded Result';
+        dom.input.placeholder = mode === 'encode'
+            ? 'Type or paste text to encode...'
+            : 'Paste URL-encoded string to decode...';
+        dom.err.style.display = 'none';
+    }
+
+    dom.tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            setMode(btn.dataset.mode);
+            if(dom.input.value.trim()) convert();
+        });
+    });
+
+    function convert(){
+        const raw = dom.input.value;
+        dom.err.style.display = 'none';
+        dom.charCount.textContent = raw.length + ' characters';
+
+        if(!raw){
+            dom.output.textContent = 'Enter text to ' + currentMode + '.';
+            dom.outCount.textContent = '0 characters';
+            return;
+        }
+
+        try {
+            let result;
+            if(currentMode === 'encode'){
+                result = encodeURIComponent(raw);
+            } else {
+                result = decodeURIComponent(raw.replace(/\+/g, ' '));
+            }
+            dom.output.textContent = result;
+            dom.outCount.textContent = result.length + ' characters';
+        } catch(e){
+            dom.err.style.display = 'block';
+            dom.err.textContent = currentMode === 'decode' ? 'Invalid URL-encoded string 鈥?check your input.' : 'Encoding error: ' + e.message;
+            dom.output.textContent = 'Error 鈥?see message above.';
+            dom.outCount.textContent = '0 characters';
+        }
+    }
+
+    function swap(){
+        const out = dom.output.textContent;
+        if(out && !out.startsWith('Error') && out !== 'Result will appear here...' && !out.startsWith('Enter text')){
+            dom.input.value = out;
+            const newMode = currentMode === 'encode' ? 'decode' : 'encode';
+            setMode(newMode);
+            convert();
+        }
+    }
+
+    function clearAll(){
+        dom.input.value = '';
+        dom.output.textContent = 'Result will appear here...';
+        dom.err.style.display = 'none';
+        dom.charCount.textContent = '0 characters';
+        dom.outCount.textContent = '0 characters';
+    }
+
+    // 鈹€鈹€ Events 鈹€鈹€
+    dom.btnConv.addEventListener('click', convert);
+    dom.btnSwap.addEventListener('click', swap);
+    dom.btnClear.addEventListener('click', clearAll);
+
+    let liveTimeout;
+    dom.input.addEventListener('input', () => {
+        if(dom.liveSwitch.checked){
+            clearTimeout(liveTimeout);
+            liveTimeout = setTimeout(convert, 200);
+        }
+    });
+
+    // 鈹€鈹€ Copy 鈹€鈹€
+    let copyTimer;
+    async function copyText(text){
+        try { await navigator.clipboard.writeText(text); } catch { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+        clearTimeout(copyTimer);
+        dom.copyToast.classList.add('show');
+        copyTimer = setTimeout(() => dom.copyToast.classList.remove('show'), 2000);
+    }
+    dom.btnCopy.addEventListener('click', () => copyText(dom.output.textContent));
+
+    // Keyboard shortcut
+    dom.input.addEventListener('keydown', e => {
+        if((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); convert(); }
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => { q.classList.toggle('open'); q.nextElementSibling.classList.toggle('open'); });
+        q.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); } });
+    });
+})();
+</script>
+</body>
+</html>
