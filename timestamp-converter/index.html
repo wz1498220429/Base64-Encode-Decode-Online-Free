@@ -121,7 +121,7 @@
         .faq-item:last-child{border-bottom:none}
         .faq-q{font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a2e;font-size:.92rem}
         .faq-q::after{content:"+";font-size:1.1rem;color:#94a3b8}
-        .faq-q.open::after{content:"−"}
+        .faq-q.open::after{content:"鈭?}
         .faq-a{padding-top:8px;color:#475569;font-size:.88rem;line-height:1.6;display:none}
         .faq-a.open{display:block}
 
@@ -151,46 +151,46 @@
 <main>
     <div class="container">
 
-        <!-- ════════════════════════════════════════════════
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
              Live Current Timestamp
-             ════════════════════════════════════════════════ -->
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <div class="now-display" id="now-display">
             <div class="label">Current Unix Timestamp</div>
-            <div class="ts" id="now-ts">—</div>
-            <div class="date" id="now-date">—</div>
+            <div class="ts" id="now-ts">鈥?/div>
+            <div class="date" id="now-date">鈥?/div>
         </div>
 
-        <!-- ════════════════════════════════════════════════
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
              Timestamp to Date
-             ════════════════════════════════════════════════ -->
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <section class="card">
-            <h2>📅 Epoch Timestamp → Human Date</h2>
+            <h2>馃搮 Epoch Timestamp 鈫?Human Date</h2>
             <div class="label-row">
                 <span>Paste a timestamp (e.g. 1747546800 or 1747546800000)</span>
             </div>
             <input type="text" id="ts-input" placeholder="Enter Unix timestamp (seconds or milliseconds)..." aria-label="Unix timestamp input">
             <div class="error-msg" id="ts-error"></div>
             <div class="btn-group">
-                <button class="btn btn-primary" id="btn-ts-convert">🔁 Convert to Date</button>
-                <button class="btn btn-secondary btn-sm" id="btn-ts-now">🕐 Now</button>
+                <button class="btn btn-primary" id="btn-ts-convert">馃攣 Convert to Date</button>
+                <button class="btn btn-secondary btn-sm" id="btn-ts-now">馃晲 Now</button>
             </div>
             <div class="result-grid" id="ts-results">
-                <div class="result-row"><span class="key">Seconds timestamp</span><span class="val" id="ts-seconds">—</span></div>
-                <div class="result-row"><span class="key">Milliseconds timestamp</span><span class="val" id="ts-ms">—</span></div>
-                <div class="result-row"><span class="key">UTC (ISO 8601)</span><span class="val" id="ts-utc">—</span></div>
-                <div class="result-row"><span class="key">Your local time</span><span class="val" id="ts-local">—</span></div>
-                <div class="result-row"><span class="key">Date (YYYY-MM-DD)</span><span class="val" id="ts-date">—</span></div>
-                <div class="result-row"><span class="key">Time (HH:MM:SS)</span><span class="val" id="ts-time">—</span></div>
-                <div class="result-row"><span class="key">Day of week</span><span class="val" id="ts-weekday">—</span></div>
-                <div class="result-row"><span class="key">Unix time (microseconds)</span><span class="val" id="ts-us">—</span></div>
+                <div class="result-row"><span class="key">Seconds timestamp</span><span class="val" id="ts-seconds">鈥?/span></div>
+                <div class="result-row"><span class="key">Milliseconds timestamp</span><span class="val" id="ts-ms">鈥?/span></div>
+                <div class="result-row"><span class="key">UTC (ISO 8601)</span><span class="val" id="ts-utc">鈥?/span></div>
+                <div class="result-row"><span class="key">Your local time</span><span class="val" id="ts-local">鈥?/span></div>
+                <div class="result-row"><span class="key">Date (YYYY-MM-DD)</span><span class="val" id="ts-date">鈥?/span></div>
+                <div class="result-row"><span class="key">Time (HH:MM:SS)</span><span class="val" id="ts-time">鈥?/span></div>
+                <div class="result-row"><span class="key">Day of week</span><span class="val" id="ts-weekday">鈥?/span></div>
+                <div class="result-row"><span class="key">Unix time (microseconds)</span><span class="val" id="ts-us">鈥?/span></div>
             </div>
         </section>
 
-        <!-- ════════════════════════════════════════════════
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
              Date to Timestamp
-             ════════════════════════════════════════════════ -->
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <section class="card">
-            <h2>📆 Human Date → Epoch Timestamp</h2>
+            <h2>馃搯 Human Date 鈫?Epoch Timestamp</h2>
             <div class="label-row">
                 <span>Pick or enter a date and time</span>
             </div>
@@ -202,37 +202,37 @@
                 <label><input type="checkbox" id="date-utc-check" checked> Treat as UTC</label>
             </div>
             <div class="result-grid" style="margin-top:12px">
-                <div class="result-row"><span class="key">Seconds timestamp</span><span class="val" id="date-seconds">—</span></div>
-                <div class="result-row"><span class="key">Milliseconds timestamp</span><span class="val" id="date-ms">—</span></div>
-                <div class="result-row"><span class="key">ISO 8601</span><span class="val" id="date-iso">—</span></div>
+                <div class="result-row"><span class="key">Seconds timestamp</span><span class="val" id="date-seconds">鈥?/span></div>
+                <div class="result-row"><span class="key">Milliseconds timestamp</span><span class="val" id="date-ms">鈥?/span></div>
+                <div class="result-row"><span class="key">ISO 8601</span><span class="val" id="date-iso">鈥?/span></div>
             </div>
             <div class="btn-group" style="margin-top:10px">
-                <button class="btn btn-success btn-sm" id="btn-copy-seconds">📋 Copy Seconds</button>
-                <button class="btn btn-success btn-sm" id="btn-copy-ms">📋 Copy Milliseconds</button>
+                <button class="btn btn-success btn-sm" id="btn-copy-seconds">馃搵 Copy Seconds</button>
+                <button class="btn btn-success btn-sm" id="btn-copy-ms">馃搵 Copy Milliseconds</button>
             </div>
         </section>
 
-        <!-- ════════════════════════════════════════════════
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
              Batch / Multiple Formats
-             ════════════════════════════════════════════════ -->
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <section class="card">
-            <h2>📋 Batch Convert (one per line)</h2>
+            <h2>馃搵 Batch Convert (one per line)</h2>
             <div class="label-row">
                 <span>Paste timestamps, one per line</span>
                 <span id="batch-count">0 results</span>
             </div>
             <textarea id="batch-input" placeholder="1747546800&#10;1747546800000&#10;1700000000&#10;Enter timestamps, one per line..." aria-label="Batch timestamp input"></textarea>
             <div class="btn-group">
-                <button class="btn btn-primary" id="btn-batch">🔄 Batch Convert</button>
+                <button class="btn btn-primary" id="btn-batch">馃攧 Batch Convert</button>
             </div>
             <div class="output-box" id="batch-output">Results will appear here...</div>
         </section>
 
-        <!-- ════════════════════════════════════════════════
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
              FAQ
-             ════════════════════════════════════════════════ -->
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <section class="card">
-            <h2>❓ Frequently Asked Questions</h2>
+            <h2>鉂?Frequently Asked Questions</h2>
 
             <div class="faq-item">
                 <div class="faq-q" role="button" tabindex="0">What is a Unix timestamp?</div>
@@ -252,17 +252,17 @@
             </div>
             <div class="faq-item">
                 <div class="faq-q" role="button" tabindex="0">Are Unix timestamps affected by timezones?</div>
-                <div class="faq-a">No. Unix timestamps are timezone-independent — they're always measured from UTC. The same timestamp represents the same moment everywhere on Earth. Only the human-readable conversion changes based on your timezone. This tool displays both UTC and your local time.</div>
+                <div class="faq-a">No. Unix timestamps are timezone-independent 鈥?they're always measured from UTC. The same timestamp represents the same moment everywhere on Earth. Only the human-readable conversion changes based on your timezone. This tool displays both UTC and your local time.</div>
             </div>
         </section>
 
-        <!-- ════════════════════════════════════════════════
-             相关工具
-             ════════════════════════════════════════════════ -->
+        <!-- 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲
+             鐩稿叧宸ュ叿
+             鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲 -->
         <section class="card">
-            <h2>🔗 Related Tools</h2>
+            <h2>馃敆 Related Tools</h2>
             <ul class="resource-list">
-                <li><a href="/base64-encode-decode">Base64 Encode Decode Online Free</a></li>
+                <li><a href="/">Base64 Encode Decode Online Free</a></li>
                 <li><a href="/json-formatter">JSON Formatter &amp; Beautifier Online</a></li>
                 <li><a href="/url-encoder-decoder">URL Encoder / Decoder Online</a></li>
                 <li><a href="/hash-generator">MD5 / SHA256 Hash Generator Online</a></li>
@@ -274,11 +274,11 @@
 
 <footer>
     <div class="container">
-        <p>Unix Timestamp Converter — © 2025 devb64.com. All processing happens in-browser. No data stored or uploaded.</p>
+        <p>Unix Timestamp Converter 鈥?漏 2025 devb64.com. All processing happens in-browser. No data stored or uploaded.</p>
     </div>
 </footer>
 
-<div class="copy-toast" id="copy-toast">✓ Copied to clipboard!</div>
+<div class="copy-toast" id="copy-toast">鉁?Copied to clipboard!</div>
 
 <script>
 (function(){
@@ -310,7 +310,7 @@
 
     const WEEKDAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-    // ── Live current time ──
+    // 鈹€鈹€ Live current time 鈹€鈹€
     let nowInterval;
     function updateNow(){
         const now = new Date();
@@ -321,7 +321,7 @@
     updateNow();
     nowInterval = setInterval(updateNow, 1000);
 
-    // ── Auto-detect timestamp type ──
+    // 鈹€鈹€ Auto-detect timestamp type 鈹€鈹€
     function parseTimestamp(str){
         str = str.trim().replace(/,/g,'');
         if(!/^-?\d+$/.test(str)) return null;
@@ -346,7 +346,7 @@
             String(d.getSeconds()).padStart(2,'0');
     }
 
-    // ── Timestamp → Date ──
+    // 鈹€鈹€ Timestamp 鈫?Date 鈹€鈹€
     function convertTs(){
         const raw = dom.tsInput.value.trim();
         if(!raw){
@@ -372,7 +372,7 @@
         dom.tsUs.textContent = (parsed.val * 1000000).toLocaleString();
     }
 
-    // ── Date → Timestamp ──
+    // 鈹€鈹€ Date 鈫?Timestamp 鈹€鈹€
     function convertDate(){
         const raw = dom.dateInput.value;
         if(!raw){
@@ -392,7 +392,7 @@
         dom.dateIso.textContent = d.toISOString();
     }
 
-    // ── Batch convert ──
+    // 鈹€鈹€ Batch convert 鈹€鈹€
     function batchConvert(){
         const lines = dom.batchInput.value.split('\n').filter(l => l.trim());
         if(lines.length === 0){
@@ -402,15 +402,15 @@
         }
         const results = lines.map(line => {
             const parsed = parseTimestamp(line);
-            if(!parsed) return line.trim() + ' → Invalid';
+            if(!parsed) return line.trim() + ' 鈫?Invalid';
             const d = new Date(parsed.ms);
-            return parsed.val.toLocaleString() + ' → ' + d.toISOString();
+            return parsed.val.toLocaleString() + ' 鈫?' + d.toISOString();
         });
         dom.batchOutput.textContent = results.join('\n');
         dom.batchCount.textContent = results.length + ' results';
     }
 
-    // ── Setup initial datetime-local ──
+    // 鈹€鈹€ Setup initial datetime-local 鈹€鈹€
     function setInitialDate(){
         const now = new Date();
         const offset = now.getTimezoneOffset();
@@ -419,7 +419,7 @@
     }
     setInitialDate();
 
-    // ── Copy toast ──
+    // 鈹€鈹€ Copy toast 鈹€鈹€
     let copyTimer;
     function showCopyToast(){
         clearTimeout(copyTimer);
@@ -442,7 +442,7 @@
         }
     }
 
-    // ── Event listeners ──
+    // 鈹€鈹€ Event listeners 鈹€鈹€
     document.getElementById('btn-ts-convert').addEventListener('click', convertTs);
     dom.tsInput.addEventListener('keydown', e => { if(e.key === 'Enter') convertTs(); });
     document.getElementById('btn-ts-now').addEventListener('click', () => {
@@ -457,7 +457,7 @@
     document.getElementById('btn-copy-seconds').addEventListener('click', () => copyText(dom.dateSeconds.textContent));
     document.getElementById('btn-copy-ms').addEventListener('click', () => copyText(dom.dateMs.textContent));
 
-    // ── FAQ accordion ──
+    // 鈹€鈹€ FAQ accordion 鈹€鈹€
     document.querySelectorAll('.faq-q').forEach(q => {
         q.addEventListener('click', () => {
             q.classList.toggle('open');
