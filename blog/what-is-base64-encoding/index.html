@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>What Is Base64 Encoding and How to Use It — Complete Guide | devb64.com</title>
+    <meta name="description" content="A complete guide to Base64 encoding: what it is, how it works, when to use it, and real-world examples. Learn to encode and decode Base64 with our free online tool.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/blog/what-is-base64-encoding">
+
+    <meta property="og:title" content="What Is Base64 Encoding and How to Use It — Complete Guide">
+    <meta property="og:description" content="A complete guide to Base64 encoding: what it is, how it works, when to use it, and real-world developer examples.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://devb64.com/blog/what-is-base64-encoding">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="What Is Base64 Encoding and How to Use It">
+    <meta name="twitter:description" content="A complete guide to Base64 encoding: what it is, how it works, when to use it, and real-world developer examples.">
+    <meta name="author" content="devb64.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What Is Base64 Encoding and How to Use It — Complete Guide",
+        "description": "A complete guide to Base64 encoding: what it is, how it works, when to use it, and real-world examples.",
+        "author": {"@type": "Organization", "name": "devb64.com"},
+        "publisher": {"@type": "Organization", "name": "devb64.com"},
+        "datePublished": "2026-05-18",
+        "mainEntityOfPage": "https://devb64.com/blog/what-is-base64-encoding"
+    }
+    </script>
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background:#f6f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh
+        }
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{max-width:800px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:32px 0 24px;text-align:center}
+        header h1{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;margin-bottom:8px;line-height:1.4}
+        header .meta{font-size:.82rem;opacity:.7}
+        main{padding:32px 0 48px}
+
+        .blog-content{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:32px 28px}
+        .blog-content h2{font-size:1.2rem;margin:28px 0 12px;color:#1a1a2e;border-bottom:2px solid #e2e8f0;padding-bottom:8px}
+        .blog-content h2:first-of-type{margin-top:0}
+        .blog-content h3{font-size:1.05rem;margin:20px 0 8px;color:#1a1a2e}
+        .blog-content p{margin-bottom:14px;color:#334155;font-size:.95rem}
+        .blog-content ul,.blog-content ol{margin:0 0 14px 20px;color:#334155;font-size:.95rem}
+        .blog-content li{margin-bottom:6px}
+        .blog-content code{
+            background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.85rem;
+            font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;color:#2563eb
+        }
+        .blog-content pre{
+            background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:8px;overflow-x:auto;
+            font-size:.85rem;line-height:1.5;margin:0 0 14px
+        }
+        .blog-content pre code{background:transparent;padding:0;color:#e2e8f0;font-size:.85rem}
+        .blog-content blockquote{
+            border-left:4px solid #2563eb;background:#eff6ff;padding:12px 16px;margin:0 0 14px;
+            border-radius:0 8px 8px 0;color:#475569;font-size:.92rem
+        }
+        .blog-content strong{color:#1a1a2e}
+        .blog-content table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:.9rem}
+        .blog-content th,.blog-content td{border:1px solid #e2e8f0;padding:10px 14px;text-align:left}
+        .blog-content th{background:#f1f5f9;font-weight:600;color:#1a1a2e}
+        .blog-content td{color:#334155}
+
+        .cta-box{
+            background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:20px 24px;
+            text-align:center;margin:28px 0 0
+        }
+        .cta-box p{font-size:.95rem;color:#1a1a2e;margin-bottom:12px}
+        .cta-box .btn{
+            display:inline-block;padding:10px 28px;background:#2563eb;color:#fff;
+            border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none
+        }
+        .cta-box .btn:hover{background:#1d4ed8;text-decoration:none}
+
+        .back-link{display:inline-block;margin-bottom:20px;font-size:.85rem}
+
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+
+        @media(max-width:600px){
+            .blog-content{padding:20px 16px}
+            .blog-content table{font-size:.82rem}
+            .blog-content th,.blog-content td{padding:6px 8px}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>What Is Base64 Encoding and How to Use It — Complete Guide</h1>
+        <div class="meta">Published May 18, 2026 · 8 min read</div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="blog-content">
+
+            <a href="/" class="back-link">← Back to Base64 Encode Decode Tool</a>
+
+            <h2>What Is Base64 Encoding?</h2>
+            <p>Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It converts any data — text, images, files — into a string of 64 different characters (A-Z, a-z, 0-9, +, /) plus the "=" padding character.</p>
+
+            <p>It was originally designed for use in email (MIME) to ensure that binary file attachments could survive transit through text-only systems like SMTP. Today it's a fundamental part of the web — used in data URIs, JWT tokens, API authentication, CSS images, and more.</p>
+
+            <h2>How Base64 Works Under the Hood</h2>
+            <p>Base64 works by taking binary data and processing it in 3-byte (24-bit) chunks. Here's the step-by-step breakdown:</p>
+
+            <ol>
+                <li><strong>Split:</strong> Divide the binary data into groups of 3 bytes (24 bits).</li>
+                <li><strong>Re-group:</strong> Split those 24 bits into four 6-bit groups (6 × 4 = 24).</li>
+                <li><strong>Map:</strong> Each 6-bit value (0-63) is mapped to a character in the Base64 alphabet.</li>
+                <li><strong>Pad:</strong> If the input size isn't divisible by 3, padding "=" characters are added to make the output length a multiple of 4.</li>
+            </ol>
+
+            <p>For example, the string <code>Man</code> (3 bytes: M=77, a=97, n=110) becomes:</p>
+            <pre>TWFu</pre>
+
+            <p>Each input byte provides 8 bits. 3 × 8 = 24 bits. Split into 4 × 6 bits. The six-bit values 19, 22, 5, 46 map to T, W, F, u in the Base64 alphabet.</p>
+
+            <h3>The Base64 Alphabet</h3>
+            <table>
+                <tr><th>Value</th><th>Char</th><th>Value</th><th>Char</th><th>Value</th><th>Char</th><th>Value</th><th>Char</th></tr>
+                <tr><td>0</td><td>A</td><td>16</td><td>Q</td><td>32</td><td>g</td><td>48</td><td>w</td></tr>
+                <tr><td>1</td><td>B</td><td>17</td><td>R</td><td>33</td><td>h</td><td>49</td><td>x</td></tr>
+                <tr><td>2</td><td>C</td><td>18</td><td>S</td><td>34</td><td>i</td><td>50</td><td>y</td></tr>
+                <tr><td>3</td><td>D</td><td>19</td><td>T</td><td>35</td><td>j</td><td>51</td><td>z</td></tr>
+                <tr><td>4</td><td>E</td><td>20</td><td>U</td><td>36</td><td>k</td><td>52</td><td>0</td></tr>
+                <tr><td>5</td><td>F</td><td>21</td><td>V</td><td>37</td><td>l</td><td>53</td><td>1</td></tr>
+                <tr><td>6</td><td>G</td><td>22</td><td>W</td><td>38</td><td>m</td><td>54</td><td>2</td></tr>
+                <tr><td>7</td><td>H</td><td>23</td><td>X</td><td>39</td><td>n</td><td>55</td><td>3</td></tr>
+                <tr><td>8</td><td>I</td><td>24</td><td>Y</td><td>40</td><td>o</td><td>56</td><td>4</td></tr>
+                <tr><td>9</td><td>J</td><td>25</td><td>Z</td><td>41</td><td>p</td><td>57</td><td>5</td></tr>
+                <tr><td>10</td><td>K</td><td>26</td><td>a</td><td>42</td><td>q</td><td>58</td><td>6</td></tr>
+                <tr><td>11</td><td>L</td><td>27</td><td>b</td><td>43</td><td>r</td><td>59</td><td>7</td></tr>
+                <tr><td>12</td><td>M</td><td>28</td><td>c</td><td>44</td><td>s</td><td>60</td><td>8</td></tr>
+                <tr><td>13</td><td>N</td><td>29</td><td>d</td><td>45</td><td>t</td><td>61</td><td>9</td></tr>
+                <tr><td>14</td><td>O</td><td>30</td><td>e</td><td>46</td><td>u</td><td>62</td><td>+</td></tr>
+                <tr><td>15</td><td>P</td><td>31</td><td>f</td><td>47</td><td>v</td><td>63</td><td>/</td></tr>
+            </table>
+
+            <h2>Common Use Cases for Base64</h2>
+
+            <h3>1. Data URIs in HTML and CSS</h3>
+            <p>One of the most common uses of Base64 on the web is embedding small images directly in HTML or CSS as data URIs. Instead of an HTTP request for an image file, the image data is encoded in Base64 and placed directly in the source code:</p>
+            <pre>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUg..." alt="Inline image"&gt;</pre>
+
+            <p>This eliminates an HTTP request, which can improve load times for small icons and graphics. However, Base64-encoded data is about 33% larger than the original binary, so it's best used for files under 10KB.</p>
+
+            <h3>2. Email Attachments (MIME)</h3>
+            <p>The original application of Base64. When you send an email with an attachment, that file is typically encoded in Base64 and embedded in the email body. This ensures the binary data survives transit through text-only email servers.</p>
+
+            <h3>3. JWT (JSON Web Tokens)</h3>
+            <p>JWT tokens use a URL-safe variant called <strong>Base64URL</strong> to encode the header, payload, and signature. A JWT looks like this:</p>
+            <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNqPZAmYgCgP</pre>
+            <p>Each segment between the dots is Base64URL-encoded JSON. You can use our <a href="/base64-encode-decode">Base64 Decode tool</a> to inspect JWT payloads.</p>
+
+            <h3>4. API Authentication Tokens</h3>
+            <p>Basic HTTP Authentication uses Base64 to encode the <code>username:password</code> pair. The browser sends a header like:</p>
+            <pre>Authorization: Basic dXNlcjpwYXNz</pre>
+            <p><strong>Important:</strong> Base64 is <em>not</em> encryption. Anyone can decode it instantly. Always use HTTPS with Basic Auth.</p>
+
+            <h3>5. Storing Binary Data in Text Formats</h3>
+            <p>Base64 is used to include binary data in JSON, XML, or YAML — formats that only support text. For example, storing a thumbnail image in a JSON API response:</p>
+            <pre>{
+  "name": "photo.jpg",
+  "thumbnail": "data:image/jpeg;base64,/9j/4AAQ..."
+}</pre>
+
+            <h2>Base64 vs Base64URL: What's the Difference?</h2>
+            <p>Standard Base64 uses <code>+</code>, <code>/</code>, and <code>=</code> characters. These cause problems in URLs and filenames because:</p>
+            <ul>
+                <li><code>+</code> is interpreted as a space in URL query strings</li>
+                <li><code>/</code> is a path separator</li>
+                <li><code>=</code> is used for query parameters</li>
+            </ul>
+            <p><strong>Base64URL</strong> solves this by replacing:</p>
+            <ul>
+                <li><code>+</code> → <code>-</code> (minus)</li>
+                <li><code>/</code> → <code>_</code> (underscore)</li>
+                <li>Trailing <code>=</code> is stripped (padding removed)</li>
+            </ul>
+
+            <h2>Is Base64 Secure?</h2>
+            <p><strong>No.</strong> Base64 is not encryption. It's encoding. There is no secret key involved — anyone who sees a Base64 string can decode it in milliseconds using tools like <a href="/base64-encode-decode">this one</a>.</p>
+
+            <p>Never use Base64 to protect sensitive information like passwords, credit card numbers, or private keys. For security, use proper encryption (AES, RSA) and always transmit over HTTPS.</p>
+
+            <h2>Performance Considerations</h2>
+            <ul>
+                <li><strong>Size increase:</strong> Base64 output is approximately 33% larger than the original binary data.</li>
+                <li><strong>CPU cost:</strong> Encoding/decoding has a small CPU overhead — fine for small data, but avoid encoding large files (megabytes) in the browser.</li>
+                <li><strong>Caching:</strong> Data URIs are not cached separately from the HTML/CSS that contains them. For images used on multiple pages, separate files with HTTP caching are better.</li>
+                <li><strong>Gzip:</strong> Base64 text compresses well with gzip, which often negates the 33% size penalty when served over HTTP.</li>
+            </ul>
+
+            <h2>How to Encode and Decode Base64</h2>
+            <p>You can use our <a href="/base64-encode-decode">free online Base64 encoder/decoder</a> — it works entirely in your browser with no server uploads. Or use one of these code snippets:</p>
+
+            <h3>JavaScript (Browser)</h3>
+            <pre>// Encode
+const encoded = btoa('Hello, World!');
+// "SGVsbG8sIFdvcmxkIQ=="
+
+// Decode
+const decoded = atob('SGVsbG8sIFdvcmxkIQ==');
+// "Hello, World!"</pre>
+
+            <h3>Node.js</h3>
+            <pre>// Encode
+const encoded = Buffer.from('Hello, World!').toString('base64');
+// "SGVsbG8sIFdvcmxkIQ=="
+
+// Decode
+const decoded = Buffer.from('SGVsbG8sIFdvcmxkIQ==', 'base64').toString();
+// "Hello, World!"</pre>
+
+            <h3>Python</h3>
+            <pre>import base64
+
+# Encode
+encoded = base64.b64encode(b"Hello, World!").decode()
+# "SGVsbG8sIFdvcmxkIQ=="
+
+# Decode
+decoded = base64.b64decode("SGVsbG8sIFdvcmxkIQ==").decode()
+# "Hello, World!"</pre>
+
+            <h2>When Should You NOT Use Base64?</h2>
+            <ul>
+                <li><strong>For large files:</strong> Base64 encoding large files (MB+) adds significant size and processing overhead. It's better to serve files separately.</li>
+                <li><strong>For security:</strong> Base64 is not encryption. Anyone can decode it.</li>
+                <li><strong>For binary protocols:</strong> If you control both ends of a connection, using pure binary (e.g., Protocol Buffers, MessagePack) is more efficient.</li>
+                <li><strong>For caching:</strong> Data URIs can't be cached independently. If an image appears on multiple pages, serve it as a separate file.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Base64 is an essential tool for every developer. It solves a specific problem — representing binary data in text-based formats — and it does it well. Whether you're embedding images in HTML, inspecting JWT tokens, or building APIs, understanding Base64 will make you more effective.</p>
+
+            <p>Bookmark our <a href="/base64-encode-decode">free Base64 encoder/decoder</a> for quick conversions, and check out our other developer tools:</p>
+
+            <div class="cta-box">
+                <p><strong>Try our free online tools:</strong></p>
+                <a href="/base64-encode-decode" class="btn">🔐 Base64 Encode/Decode</a>
+                <br><br>
+                <a href="/timestamp-converter" style="font-size:.85rem;color:#2563eb">⏰ Unix Timestamp Converter</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>devb64.com — Free online developer tools. All processing happens in-browser.</p>
+    </div>
+</footer>
+
+<script>
+(function(){
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href').slice(1);
+            const el = document.getElementById(id);
+            if(el) {
+                e.preventDefault();
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+})();
+</script>
+</body>
+</html>
