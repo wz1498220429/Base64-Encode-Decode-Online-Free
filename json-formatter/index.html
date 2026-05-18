@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JSON Formatter & Beautifier Online Free - Validate & Format JSON</title>
+    <meta name="description" content="Free online JSON formatter and beautifier. Format, validate, minify, and tree-view JSON data instantly. Works in your browser with no server uploads.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/json-formatter">
+
+    <meta property="og:title" content="JSON Formatter & Beautifier Online Free - Validate & Format JSON">
+    <meta property="og:description" content="Free online JSON formatter and beautifier. Format, validate, minify, and view JSON data in a tree structure. No signup required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devb64.com/json-formatter">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON Formatter & Beautifier Online Free">
+    <meta name="twitter:description" content="Free online JSON formatter. Format, validate, minify JSON instantly. No server uploads.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JSON Formatter & Beautifier Online Free",
+        "url": "https://devb64.com/json-formatter",
+        "description": "Free online JSON formatter and beautifier. Format, validate, minify, and tree-view JSON data instantly.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "JavaScript",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "author": {"@type": "Organization", "name": "devb64.com"}
+    }
+    </script>
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background:#f6f8fa;color:#1a1a2e;line-height:1.7;min-height:100vh
+        }
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        .container{max-width:900px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:36px 0 28px;text-align:center}
+        header h1{font-size:clamp(1.35rem,4vw,1.8rem);font-weight:700;margin-bottom:6px}
+        header p{font-size:.92rem;opacity:.85;max-width:620px;margin:0 auto}
+        main{padding:28px 0 40px}
+
+        .card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:24px 22px;margin-bottom:24px}
+        .card h2{font-size:1.05rem;font-weight:600;margin-bottom:14px;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+
+        .tab-bar{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid #e2e8f0}
+        .tab-btn{
+            flex:1;padding:9px 14px;text-align:center;cursor:pointer;font-weight:600;font-size:.85rem;
+            color:#64748b;background:transparent;border:none;border-bottom:2px solid transparent;
+            margin-bottom:-2px;transition:all .2s
+        }
+        .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+
+        .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+        .btn{
+            padding:9px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;
+            transition:all .12s;display:inline-flex;align-items:center;gap:5px
+        }
+        .btn-primary{background:#2563eb;color:#fff}
+        .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+        .btn-secondary{background:#e2e8f0;color:#334155}
+        .btn-secondary:hover{background:#cbd5e1}
+        .btn-success{background:#059669;color:#fff}
+        .btn-success:hover{background:#047857}
+        .btn-warning{background:#d97706;color:#fff}
+        .btn-warning:hover{background:#b45309}
+        .btn-sm{padding:5px 12px;font-size:.78rem}
+
+        textarea{
+            width:100%;min-height:200px;padding:12px 14px;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;
+            font-size:.85rem;line-height:1.5;border:1px solid #d1d5db;border-radius:8px;
+            resize:vertical;transition:border-color .2s;background:#fafbfc
+        }
+        textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+        .label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:.82rem;color:#475569}
+
+        .output-area{
+            background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;
+            padding:12px 14px;min-height:200px;font-family:monospace;font-size:.85rem;
+            line-height:1.5;white-space:pre-wrap;word-break:break-all;margin-top:6px;overflow:auto
+        }
+        .error-msg{color:#dc2626;font-size:.82rem;margin-top:5px;display:none}
+        .success-msg{color:#059669;font-size:.82rem;margin-top:5px;display:none}
+
+        .stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:#64748b;margin-top:6px}
+        .stats span{background:#f1f5f9;padding:3px 10px;border-radius:4px}
+
+        .tree-view{font-family:monospace;font-size:.82rem;line-height:1.6;overflow:auto;max-height:500px}
+        .tree-toggle{cursor:pointer;user-select:none;color:#64748b;font-size:.78rem}
+        .tree-toggle:hover{color:#2563eb}
+        .tree-key{color:#2563eb}
+        .tree-string{color:#059669}
+        .tree-number{color:#d97706}
+        .tree-bool{color:#7c3aed}
+        .tree-null{color:#dc2626}
+        .tree-bracket{color:#64748b}
+        .tree-ellipsis{color:#94a3b8;cursor:pointer;font-style:italic}
+        .tree-ellipsis:hover{color:#2563eb}
+        .tree-hidden{display:none}
+
+        .copy-toast{
+            display:none;background:#059669;color:#fff;padding:6px 14px;border-radius:6px;
+            font-size:.78rem;font-weight:500;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+            z-index:999;box-shadow:0 2px 10px rgba(0,0,0,.15)
+        }
+        .copy-toast.show{display:block;animation:fadeInOut 2s}
+        @keyframes fadeInOut{
+            0%{opacity:0;transform:translateX(-50%) translateY(10px)}
+            15%{opacity:1;transform:translateX(-50%) translateY(0)}
+            75%{opacity:1;transform:translateX(-50%) translateY(0)}
+            100%{opacity:0;transform:translateX(-50%) translateY(-10px)}
+        }
+
+        .resource-list{list-style:none;display:grid;gap:8px}
+        .resource-list li{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 16px;transition:box-shadow .15s}
+        .resource-list li:hover{box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .resource-list a{font-weight:500;font-size:.92rem}
+
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+
+        @media(max-width:600px){
+            .card{padding:16px 12px}
+            textarea{min-height:150px}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>JSON Formatter & Beautifier Online Free</h1>
+        <p>Format, validate, minify, and explore JSON data with an interactive tree view. All processing happens in your browser — nothing is uploaded.</p>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- ════════════════════════════════════════════════
+             Tab: Format / Minify / Tree
+             ════════════════════════════════════════════════ -->
+        <section class="card">
+            <h2>📋 JSON Formatter & Validator</h2>
+
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-mode="format" id="tab-format">✨ Format / Beautify</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="minify" id="tab-minify">📦 Minify</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-mode="tree" id="tab-tree">🌳 Tree View</button>
+            </div>
+
+            <!-- 输入 -->
+            <div class="label-row">
+                <span id="input-label">Paste your JSON here</span>
+                <span id="char-count">0 chars</span>
+            </div>
+            <textarea id="json-input" placeholder='{"name":"devb64","tools":["base64","timestamp","json"],"free":true}' aria-label="JSON input"></textarea>
+            <div class="error-msg" id="error-msg"></div>
+            <div class="success-msg" id="success-msg"></div>
+
+            <!-- 按钮 -->
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-process">▶ Process</button>
+                <button class="btn btn-secondary" id="btn-sample">📄 Load Sample</button>
+                <button class="btn btn-secondary btn-sm" id="btn-clear">✕ Clear</button>
+                <button class="btn btn-success btn-sm" id="btn-copy">📋 Copy Result</button>
+            </div>
+
+            <!-- 输出 -->
+            <div class="label-row">
+                <span id="output-label">Formatted Result</span>
+            </div>
+            <div class="output-area" id="json-output" role="textbox" aria-readonly="true">Result will appear here...</div>
+            <div class="stats" id="json-stats">
+                <span id="stat-lines">Lines: 0</span>
+                <span id="stat-size">Size: 0 B</span>
+                <span id="stat-valid">Valid: —</span>
+            </div>
+
+            <div id="tree-container" style="display:none">
+                <div class="label-row" style="margin-top:12px">
+                    <span>🌳 Interactive Tree View</span>
+                    <span class="tree-toggle" id="tree-expand-all" style="cursor:pointer">Expand All</span>
+                </div>
+                <div class="tree-view" id="tree-view"></div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════
+             FAQ
+             ════════════════════════════════════════════════ -->
+        <section class="card">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What is JSON?</div><div class="faq-a">JSON (JavaScript Object Notation) is a lightweight data interchange format. It's easy for humans to read and write, and easy for machines to parse and generate. JSON is built on two structures: a collection of name/value pairs (objects) and an ordered list of values (arrays).</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">Is my data safe when using this tool?</div><div class="faq-a">Yes. All processing happens entirely in your browser using JavaScript's JSON.parse and JSON.stringify. Your data never leaves your device — no uploads, no servers, no storage.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">What's the difference between Format and Minify?</div><div class="faq-a"><strong>Format/Beautify</strong> adds indentation and line breaks to make JSON readable. <strong>Minify</strong> removes all whitespace to make JSON as compact as possible — useful for reducing file size in production APIs.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0">Can I validate JSON with this tool?</div><div class="faq-a">Yes! Every time you format or minify, the tool validates your JSON. If it's invalid, a red error message will show exactly where the problem is. Valid JSON turns green.</div></div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════
+             相关工具
+             ════════════════════════════════════════════════ -->
+        <section class="card">
+            <h2>🔗 More Free Developer Tools</h2>
+            <ul class="resource-list">
+                <li><a href="/base64-encode-decode">Base64 Encode Decode Online Free</a></li>
+                <li><a href="/timestamp-converter">Unix Timestamp Converter — Epoch to Date</a></li>
+                <li><a href="/url-encoder-decoder">URL Encoder / Decoder Online</a></li>
+                <li><a href="/hash-generator">MD5 / SHA256 Hash Generator Online</a></li>
+            </ul>
+        </section>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>JSON Formatter & Beautifier — © devb64.com. All processing happens in-browser.</p>
+    </div>
+</footer>
+
+<div class="copy-toast" id="copy-toast">✓ Copied!</div>
+
+<script>
+(function(){
+    'use strict';
+
+    const dom = {
+        input: document.getElementById('json-input'),
+        output: document.getElementById('json-output'),
+        error: document.getElementById('error-msg'),
+        success: document.getElementById('success-msg'),
+        btnProcess: document.getElementById('btn-process'),
+        btnSample: document.getElementById('btn-sample'),
+        btnClear: document.getElementById('btn-clear'),
+        btnCopy: document.getElementById('btn-copy'),
+        charCount: document.getElementById('char-count'),
+        statLines: document.getElementById('stat-lines'),
+        statSize: document.getElementById('stat-size'),
+        statValid: document.getElementById('stat-valid'),
+        tabs: document.querySelectorAll('.tab-btn'),
+        treeContainer: document.getElementById('tree-container'),
+        treeView: document.getElementById('tree-view'),
+        treeExpandAll: document.getElementById('tree-expand-all'),
+        outputLabel: document.getElementById('output-label'),
+        copyToast: document.getElementById('copy-toast'),
+    };
+
+    let currentMode = 'format';
+
+    // ── Tab switching ──
+    dom.tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentMode = btn.dataset.mode;
+            dom.tabs.forEach(t => {
+                t.classList.toggle('active', t.dataset.mode === currentMode);
+                t.setAttribute('aria-selected', t.dataset.mode === currentMode);
+            });
+            dom.outputLabel.textContent = currentMode === 'format' ? 'Formatted Result' : currentMode === 'minify' ? 'Minified Result' : 'Tree View';
+            dom.treeContainer.style.display = currentMode === 'tree' ? 'block' : 'none';
+            if(dom.input.value.trim()) process();
+        });
+    });
+
+    // ── Copy toast ──
+    let copyTimer;
+    function showCopyToast(){
+        clearTimeout(copyTimer);
+        dom.copyToast.classList.add('show');
+        copyTimer = setTimeout(() => dom.copyToast.classList.remove('show'), 2000);
+    }
+
+    async function copyText(text){
+        try { await navigator.clipboard.writeText(text); showCopyToast(); }
+        catch { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showCopyToast(); }
+    }
+
+    // ── Core process ──
+    function process(){
+        const raw = dom.input.value.trim();
+        dom.error.style.display = 'none';
+        dom.success.style.display = 'none';
+        dom.charCount.textContent = raw.length + ' chars';
+
+        if(!raw){
+            dom.output.textContent = 'Paste JSON to format...';
+            dom.statLines.textContent = 'Lines: 0';
+            dom.statSize.textContent = 'Size: 0 B';
+            dom.statValid.textContent = 'Valid: —';
+            dom.treeView.innerHTML = '';
+            return;
+        }
+
+        try {
+            const parsed = JSON.parse(raw);
+            const pretty = JSON.stringify(parsed, null, 2);
+            const minified = JSON.stringify(parsed);
+
+            let result;
+            if(currentMode === 'format') result = pretty;
+            else if(currentMode === 'minify') result = minified;
+            else result = pretty;
+
+            dom.output.textContent = result;
+            dom.success.textContent = '✓ Valid JSON';
+            dom.success.style.display = 'block';
+
+            // Stats
+            const lines = result.split('\n').length;
+            const bytes = new Blob([result]).size;
+            dom.statLines.textContent = 'Lines: ' + lines;
+            dom.statSize.textContent = 'Size: ' + (bytes < 1024 ? bytes + ' B' : (bytes / 1024).toFixed(1) + ' KB');
+            dom.statValid.textContent = 'Valid: ✓';
+
+            // Tree view
+            if(currentMode === 'tree') renderTree(parsed);
+        } catch(e){
+            dom.output.textContent = 'Invalid JSON — see error below.';
+            dom.error.textContent = '✗ ' + e.message;
+            dom.error.style.display = 'block';
+            dom.statLines.textContent = 'Lines: 0';
+            dom.statSize.textContent = 'Size: 0 B';
+            dom.statValid.textContent = 'Valid: ✗';
+            dom.treeView.innerHTML = '';
+        }
+    }
+
+    // ── Tree view renderer ──
+    let treeState = {};
+
+    function renderTree(data, parentKey = ''){
+        dom.treeView.innerHTML = '';
+        treeState = {};
+        const root = document.createElement('div');
+        root.style.paddingLeft = '0';
+        buildTreeNode(data, root, '', 0, true);
+        dom.treeView.appendChild(root);
+    }
+
+    function buildTreeNode(data, parent, key, depth, expanded){
+        const line = document.createElement('div');
+        line.style.paddingLeft = (depth * 16) + 'px';
+
+        const collapseBtn = document.createElement('span');
+        collapseBtn.className = 'tree-toggle';
+
+        if(data === null){
+            line.innerHTML = (key ? `<span class="tree-key">${escapeHtml(key)}</span>: ` : '') + '<span class="tree-null">null</span>';
+            parent.appendChild(line);
+            return;
+        }
+
+        const type = typeof data;
+
+        if(type === 'object' && Array.isArray(data)){
+            if(data.length === 0){
+                line.innerHTML = (key ? `<span class="tree-key">${escapeHtml(key)}</span>: ` : '') + '<span class="tree-bracket">[]</span>';
+                parent.appendChild(line);
+                return;
+            }
+            const id = 'tree-' + depth + '-' + Math.random().toString(36).slice(2, 6);
+            const isArray = true;
+            collapseBtn.textContent = expanded ? '▼' : '▶';
+            collapseBtn.dataset.target = id;
+            collapseBtn.addEventListener('click', function(){
+                const el = document.getElementById(this.dataset.target);
+                if(el){
+                    el.classList.toggle('tree-hidden');
+                    this.textContent = el.classList.contains('tree-hidden') ? '▶' : '▼';
+                }
+            });
+            line.appendChild(collapseBtn);
+            line.innerHTML += ' ' + (key ? `<span class="tree-key">${escapeHtml(key)}</span>: ` : '') + `<span class="tree-bracket">[${data.length}]</span>`;
+            parent.appendChild(line);
+
+            const container = document.createElement('div');
+            container.id = id;
+            if(!expanded) container.classList.add('tree-hidden');
+            data.forEach((item, idx) => {
+                if(typeof item === 'object' && item !== null){
+                    buildTreeNode(item, container, idx, depth + 1, false);
+                } else {
+                    buildTreeNode(item, container, idx, depth + 1, true);
+                }
+            });
+            parent.appendChild(container);
+            return;
+        }
+
+        if(type === 'object' && data !== null){
+            const keys = Object.keys(data);
+            if(keys.length === 0){
+                line.innerHTML = (key ? `<span class="tree-key">${escapeHtml(key)}</span>: ` : '') + '<span class="tree-bracket">{}</span>';
+                parent.appendChild(line);
+                return;
+            }
+            const id = 'tree-' + depth + '-' + Math.random().toString(36).slice(2, 6);
+            collapseBtn.textContent = expanded ? '▼' : '▶';
+            collapseBtn.dataset.target = id;
+            collapseBtn.addEventListener('click', function(){
+                const el = document.getElementById(this.dataset.target);
+                if(el){
+                    el.classList.toggle('tree-hidden');
+                    this.textContent = el.classList.contains('tree-hidden') ? '▶' : '▼';
+                }
+            });
+            line.appendChild(collapseBtn);
+            line.innerHTML += ' ' + (key ? `<span class="tree-key">${escapeHtml(key)}</span>: ` : '') + `<span class="tree-bracket">{${keys.length}}</span>`;
+            parent.appendChild(line);
+
+            const container = document.createElement('div');
+            container.id = id;
+            if(!expanded) container.classList.add('tree-hidden');
+            keys.forEach(k => {
+                buildTreeNode(data[k], container, k, depth + 1, false);
+            });
+            parent.appendChild(container);
+            return;
+        }
+
+        // Leaf value
+        let valHtml;
+        if(type === 'string') valHtml = `<span class="tree-string">"${escapeHtml(data)}"</span>`;
+        else if(type === 'number') valHtml = `<span class="tree-number">${data}</span>`;
+        else if(type === 'boolean') valHtml = `<span class="tree-bool">${data}</span>`;
+        else valHtml = `<span class="tree-null">${data}</span>`;
+
+        line.innerHTML = (key !== '' && key !== undefined && key !== null ? `<span class="tree-key">${escapeHtml(String(key))}</span>: ` : '') + valHtml;
+        parent.appendChild(line);
+    }
+
+    function escapeHtml(str){
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // ── Events ──
+    dom.btnProcess.addEventListener('click', process);
+    dom.btnClear.addEventListener('click', () => {
+        dom.input.value = '';
+        dom.output.textContent = 'Result will appear here...';
+        dom.error.style.display = 'none';
+        dom.success.style.display = 'none';
+        dom.charCount.textContent = '0 chars';
+        dom.statLines.textContent = 'Lines: 0';
+        dom.statSize.textContent = 'Size: 0 B';
+        dom.statValid.textContent = 'Valid: —';
+        dom.treeView.innerHTML = '';
+    });
+
+    dom.btnCopy.addEventListener('click', () => copyText(dom.output.textContent));
+
+    dom.btnSample.addEventListener('click', () => {
+        dom.input.value = JSON.stringify({
+            "name": "devb64.com",
+            "description": "Free online developer tools",
+            "tools": [
+                { "name": "Base64 Encode/Decode", "url": "/base64-encode-decode", "free": true },
+                { "name": "Timestamp Converter", "url": "/timestamp-converter", "free": true },
+                { "name": "JSON Formatter", "url": "/json-formatter", "free": true }
+            ],
+            "features": { "noServer": true, "noSignup": true, "privacyFocused": true, "languages": ["en"] },
+            "stats": { "toolsCount": 3, "uptime": "99.9%" }
+        }, null, 2);
+        process();
+    });
+
+    // Keyboard shortcut
+    dom.input.addEventListener('keydown', e => {
+        if((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); process(); }
+    });
+
+    dom.treeExpandAll.addEventListener('click', () => {
+        const hidden = dom.treeView.querySelectorAll('.tree-hidden');
+        if(hidden.length > 0){
+            hidden.forEach(el => el.classList.remove('tree-hidden'));
+            dom.treeView.querySelectorAll('.tree-toggle').forEach(el => { if(el.textContent === '▶') el.textContent = '▼'; });
+            dom.treeExpandAll.textContent = 'Collapse All';
+        } else {
+            dom.treeView.querySelectorAll('.tree-hidden').forEach(el => el.classList.add('tree-hidden')); // no-op since none hidden
+            dom.treeView.querySelectorAll('[id^="tree-"]').forEach((el, idx) => {
+                if(idx > 0) el.classList.add('tree-hidden');
+            });
+            dom.treeView.querySelectorAll('.tree-toggle').forEach(el => el.textContent = '▶');
+            const firstToggle = dom.treeView.querySelector('.tree-toggle');
+            if(firstToggle) firstToggle.textContent = '▼';
+            const firstContainer = dom.treeView.querySelector('[id^="tree-"]');
+            if(firstContainer) firstContainer.classList.remove('tree-hidden');
+            dom.treeExpandAll.textContent = 'Expand All';
+        }
+    });
+
+    // Auto-process on load with sample
+    dom.btnSample.click();
+})();
+</script>
+</body>
+</html>
