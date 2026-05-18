@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>How to Decode a JWT Token Online Without a Server | devb64.com</title>
+    <meta name="description" content="Learn how to decode JWT tokens online without sending data to any server. Inspect JWT headers, payloads, and signatures using Base64 decoding - all in your browser.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/blog/decode-jwt-token-online">
+    <meta property="og:title" content="How to Decode a JWT Token Online Without a Server">
+    <meta property="og:description" content="Learn how to decode JWT tokens online without sending data to any server. Inspect JWT headers, payloads, and signatures using Base64URL decoding.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://devb64.com/blog/decode-jwt-token-online">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Decode a JWT Token Online Without a Server">
+    <meta name="twitter:description" content="Learn how to decode JWT tokens online without sending data to any server.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Decode a JWT Token Online Without a Server",
+        "description": "Learn how to decode JWT tokens online without sending data to any server. Inspect JWT headers, payloads, and signatures using Base64URL decoding.",
+        "author": {"@type": "Organization", "name": "devb64.com"},
+        "datePublished": "2026-05-18",
+        "mainEntityOfPage": "https://devb64.com/blog/decode-jwt-token-online"
+    }
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:#f6f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+        .container{max-width:800px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:32px 0 24px;text-align:center}
+        header h1{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;margin-bottom:8px;line-height:1.4}
+        header .meta{font-size:.82rem;opacity:.7}
+        main{padding:32px 0 48px}
+        .blog-content{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:32px 28px}
+        .blog-content h2{font-size:1.2rem;margin:28px 0 12px;color:#1a1a2e;border-bottom:2px solid #e2e8f0;padding-bottom:8px}
+        .blog-content h2:first-of-type{margin-top:0}
+        .blog-content h3{font-size:1.05rem;margin:20px 0 8px;color:#1a1a2e}
+        .blog-content p{margin-bottom:14px;color:#334155;font-size:.95rem}
+        .blog-content ul,.blog-content ol{margin:0 0 14px 20px;color:#334155;font-size:.95rem}
+        .blog-content li{margin-bottom:6px}
+        .blog-content code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.85rem;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;color:#2563eb}
+        .blog-content pre{background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:0 0 14px}
+        .blog-content pre code{background:transparent;padding:0;color:#e2e8f0;font-size:.85rem}
+        .blog-content blockquote{border-left:4px solid #2563eb;background:#eff6ff;padding:12px 16px;margin:0 0 14px;border-radius:0 8px 8px 0;color:#475569;font-size:.92rem}
+        .blog-content strong{color:#1a1a2e}
+        .cta-box{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:20px 24px;text-align:center;margin:28px 0 0}
+        .cta-box p{font-size:.95rem;color:#1a1a2e;margin-bottom:12px}
+        .cta-box .btn{display:inline-block;padding:10px 28px;background:#2563eb;color:#fff;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none}
+        .cta-box .btn:hover{background:#1d4ed8;text-decoration:none}
+        .back-link{display:inline-block;margin-bottom:20px;font-size:.85rem}
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+        @media(max-width:600px){.blog-content{padding:20px 16px}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>How to Decode a JWT Token Online Without a Server</h1>
+        <div class="meta">Published May 18, 2026 - 6 min read</div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="blog-content">
+            <a href="/" class="back-link">Back to Base64 Encode Decode Tool</a>
+            <p>JWT (JSON Web Tokens) are everywhere in modern web development - used for authentication, API authorization, and secure information exchange. If you have ever needed to inspect a JWT token to see what data it contains, this guide will show you how to decode it safely, entirely in your browser.</p>
+
+            <h2>What is a JWT Token?</h2>
+            <p>A JWT token is a compact, URL-safe string that consists of three parts separated by dots:</p>
+            <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNqPZAmYgCgP</pre>
+            <p>The three parts are:</p>
+            <ol>
+                <li><strong>Header</strong> (first segment) - Contains the signing algorithm and token type</li>
+                <li><strong>Payload</strong> (second segment) - Contains the claims (data) like user ID, expiration, etc.</li>
+                <li><strong>Signature</strong> (third segment) - Verifies the token has not been tampered with</li>
+            </ol>
+            <p>Each segment is Base64URL-encoded. This means you can decode the header and payload without any server - they are just Base64URL-encoded JSON.</p>
+
+            <h2>Why Decode Without a Server?</h2>
+            <p>Many online JWT decoders send your token to their server for decoding. This is a security risk because JWT tokens often contain sensitive information like user IDs, email addresses, or session tokens. By decoding locally in your browser, your token never leaves your computer.</p>
+            <p>Our <a href="/">Base64 Encode Decode tool</a> supports Base64URL mode - perfect for inspecting JWT tokens safely.</p>
+
+            <h2>Step-by-Step: Decode a JWT Manually</h2>
+
+            <h3>Step 1: Get the Token</h3>
+            <p>For this example, let us use a sample JWT:</p>
+            <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</pre>
+
+            <h3>Step 2: Split the Token</h3>
+            <p>Split by the dot (.) separator:</p>
+            <ul>
+                <li><strong>Header:</strong> <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></li>
+                <li><strong>Payload:</strong> <code>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</code></li>
+                <li><strong>Signature:</strong> <code>SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></li>
+            </ul>
+
+            <h3>Step 3: Decode Each Segment</h3>
+            <p>Using the <a href="/">Base64 tool</a> in Base64URL mode, decode each segment:</p>
+
+            <p><strong>Header (decoded):</strong></p>
+            <pre>{"alg":"HS256","typ":"JWT"}</pre>
+
+            <p><strong>Payload (decoded):</strong></p>
+            <pre>{"sub":"1234567890","name":"John Doe","iat":1516239022}</pre>
+
+            <p>The signature cannot be decoded as JSON - it is raw binary data that verifies token integrity.</p>
+
+            <h2>Using Our Tool to Decode JWT</h2>
+            <p>Our <a href="/">Base64 tool</a> supports Base64URL mode specifically for JWT inspection:</p>
+            <ol>
+                <li>Open the <a href="/">Base64 Encode Decode tool</a></li>
+                <li>Click the <strong>"Base64URL (JWT-safe)"</strong> pill at the top</li>
+                <li>Switch to <strong>"Decode"</strong> mode</li>
+                <li>Paste the JWT segment (header or payload)</li>
+                <li>Click <strong>"Convert"</strong> to see the decoded JSON</li>
+            </ol>
+
+            <h2>Using JavaScript to Decode JWT</h2>
+            <pre>function decodeJWT(token){
+    var parts = token.split('.');
+    if(parts.length !== 3){
+        throw new Error('Invalid JWT: expected 3 segments');
+    }
+
+    // Decode header (first segment)
+    var header = JSON.parse(atob(parts[0]
+        .replace(/-/g, '+').replace(/_/g, '/')
+        .padEnd(parts[0].length + (4 - parts[0].length % 4) % 4, '=')));
+    console.log('Header:', header);
+
+    // Decode payload (second segment)
+    var payload = JSON.parse(atob(parts[1]
+        .replace(/-/g, '+').replace(/_/g, '/')
+        .padEnd(parts[1].length + (4 - parts[1].length % 4) % 4, '=')));
+    console.log('Payload:', payload);
+
+    return { header: header, payload: payload };
+}
+
+// Usage
+var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+var decoded = decodeJWT(token);
+// Header: { alg: "HS256", typ: "JWT" }
+// Payload: { sub: "1234567890", name: "John Doe", iat: 1516239022 }</pre>
+
+            <h2>Understanding JWT Claims</h2>
+            <p>JWT payloads contain claims. Some standard claims include:</p>
+            <ul>
+                <li><code>sub</code> (Subject) - The user or entity the token is about</li>
+                <li><code>iss</code> (Issuer) - Who issued the token</li>
+                <li><code>aud</code> (Audience) - Who the token is intended for</li>
+                <li><code>exp</code> (Expiration) - When the token expires (Unix timestamp)</li>
+                <li><code>iat</code> (Issued At) - When the token was issued</li>
+                <li><code>nbf</code> (Not Before) - Token is not valid before this time</li>
+                <li><code>jti</code> (JWT ID) - Unique identifier for the token</li>
+            </ul>
+
+            <h2>Security Warning</h2>
+            <p><strong>Important:</strong> Decoding a JWT reveals the header and payload, but it does <em>not</em> verify the signature. Anyone can decode a JWT - the security comes from the signature, which proves the token was issued by a trusted party and has not been modified. Always verify the signature on your server using the secret key.</p>
+            <p>Never paste production JWT tokens into untrusted websites that might send your token to a remote server. Always use tools that process data locally, like <a href="/">devb64.com</a>.</p>
+
+            <h2>Common JWT Algorithms</h2>
+            <ul>
+                <li><strong>HS256:</strong> HMAC with SHA-256 (symmetric - same key signs and verifies)</li>
+                <li><strong>RS256:</strong> RSA with SHA-256 (asymmetric - private key signs, public key verifies)</li>
+                <li><strong>ES256:</strong> ECDSA with P-256 and SHA-256</li>
+                <li><strong>none:</strong> No signature (avoid this - it means anyone can forge tokens)</li>
+            </ul>
+
+            <p>Try decoding JWT tokens yourself with our <a href="/">Base64 Encode Decode tool</a> using Base64URL mode.</p>
+
+            <div class="cta-box">
+                <p><strong>Try it now:</strong></p>
+                <a href="/" class="btn">Decode JWT with Base64URL</a>
+                <br><br>
+                <a href="/blog/data-uri-best-practices" style="font-size:.85rem;color:#2563eb">Read: Data URI Best Practices</a>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <p>devb64.com - Free online developer tools. All processing happens in-browser.</p>
+    </div>
+</footer>
+</body>
+</html>
