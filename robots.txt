@@ -1,0 +1,6 @@
+# robots.txt for devb64.com
+User-agent: *
+Allow: /
+Disallow: /private/
+
+Sitemap: https://devb64.com/sitemap.xml
