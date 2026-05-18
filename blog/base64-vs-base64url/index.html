@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Base64 vs Base64URL: What's the Difference? | devb64.com</title>
+    <meta name="description" content="Learn the key differences between Base64 and Base64URL encoding. Understand when to use each, how they differ in character sets, and why Base64URL is preferred for JWTs and URLs.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devb64.com/blog/base64-vs-base64url">
+    <meta property="og:title" content="Base64 vs Base64URL: What's the Difference?">
+    <meta property="og:description" content="Learn the key differences between Base64 and Base64URL encoding. Understand when to use each and why Base64URL is preferred for JWTs and URLs.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://devb64.com/blog/base64-vs-base64url">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Base64 vs Base64URL: What's the Difference?">
+    <meta name="twitter:description" content="Learn the key differences between Base64 and Base64URL encoding. Understand when to use each.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Base64 vs Base64URL: What's the Difference?",
+        "description": "Learn the key differences between Base64 and Base64URL encoding. Understand when to use each, how they differ in character sets, and why Base64URL is preferred for JWTs and URLs.",
+        "author": {"@type": "Organization", "name": "devb64.com"},
+        "datePublished": "2026-05-18",
+        "mainEntityOfPage": "https://devb64.com/blog/base64-vs-base64url"
+    }
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:#f6f8fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+        a{color:#2563eb;text-decoration:none}
+        a:hover{text-decoration:underline}
+        .container{max-width:800px;margin:0 auto;padding:0 20px}
+        header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:32px 0 24px;text-align:center}
+        header h1{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;margin-bottom:8px;line-height:1.4}
+        header .meta{font-size:.82rem;opacity:.7}
+        main{padding:32px 0 48px}
+        .blog-content{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:32px 28px}
+        .blog-content h2{font-size:1.2rem;margin:28px 0 12px;color:#1a1a2e;border-bottom:2px solid #e2e8f0;padding-bottom:8px}
+        .blog-content h2:first-of-type{margin-top:0}
+        .blog-content h3{font-size:1.05rem;margin:20px 0 8px;color:#1a1a2e}
+        .blog-content p{margin-bottom:14px;color:#334155;font-size:.95rem}
+        .blog-content ul,.blog-content ol{margin:0 0 14px 20px;color:#334155;font-size:.95rem}
+        .blog-content li{margin-bottom:6px}
+        .blog-content code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.85rem;font-family:"SF Mono","Cascadia Code","Fira Code","Consolas",monospace;color:#2563eb}
+        .blog-content pre{background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:0 0 14px}
+        .blog-content pre code{background:transparent;padding:0;color:#e2e8f0;font-size:.85rem}
+        .blog-content blockquote{border-left:4px solid #2563eb;background:#eff6ff;padding:12px 16px;margin:0 0 14px;border-radius:0 8px 8px 0;color:#475569;font-size:.92rem}
+        .blog-content strong{color:#1a1a2e}
+        .blog-content table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:.9rem}
+        .blog-content th,.blog-content td{border:1px solid #e2e8f0;padding:10px 14px;text-align:left}
+        .blog-content th{background:#f1f5f9;font-weight:600;color:#1a1a2e}
+        .blog-content td{color:#334155}
+        .blog-content .highlight{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px 20px;margin:0 0 14px}
+        .blog-content .highlight strong{color:#059669}
+        .cta-box{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:20px 24px;text-align:center;margin:28px 0 0}
+        .cta-box p{font-size:.95rem;color:#1a1a2e;margin-bottom:12px}
+        .cta-box .btn{display:inline-block;padding:10px 28px;background:#2563eb;color:#fff;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none}
+        .cta-box .btn:hover{background:#1d4ed8;text-decoration:none}
+        .back-link{display:inline-block;margin-bottom:20px;font-size:.85rem}
+        footer{text-align:center;padding:20px 0;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0}
+        @media(max-width:600px){.blog-content{padding:20px 16px}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Base64 vs Base64URL: What's the Difference?</h1>
+        <div class="meta">Published May 18, 2026 - 6 min read</div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="blog-content">
+            <a href="/" class="back-link">Back to Base64 Encode Decode Tool</a>
+            <p>If you have ever worked with JWT tokens, URL parameters, or API authentication, you have likely encountered both Base64 and Base64URL encoding. While they are very similar, the differences matter a lot depending on where you use them.</p>
+
+            <h2>What is Standard Base64?</h2>
+            <p>Standard Base64 (RFC 4648 section 4) is the most common encoding format. It uses a 65-character alphabet consisting of:</p>
+            <ul>
+                <li><strong>A-Z</strong> (26 characters)</li>
+                <li><strong>a-z</strong> (26 characters)</li>
+                <li><strong>0-9</strong> (10 characters)</li>
+                <li><strong>+</strong> (plus sign)</li>
+                <li><strong>/</strong> (forward slash)</li>
+                <li><strong>=</strong> (padding character)</li>
+            </ul>
+            <p>This is what you get when you run <code>btoa()</code> in the browser or <code>base64.b64encode()</code> in Python.</p>
+
+            <h2>What is Base64URL?</h2>
+            <p>Base64URL (RFC 4648 section 5) is a URL-safe variant of Base64. It was designed specifically for use in URLs, filenames, and anywhere else where certain characters have special meaning.</p>
+            <p>Base64URL makes three changes to standard Base64:</p>
+            <ul>
+                <li><code>+</code> becomes <code>-</code> (minus sign) - because + means space in URL query strings</li>
+                <li><code>/</code> becomes <code>_</code> (underscore) - because / is a path separator</li>
+                <li><strong>= padding is stripped</strong> - because = is used for query parameters and makes the string longer</li>
+            </ul>
+
+            <h2>Side by Side Comparison</h2>
+            <table>
+                <tr><th>Feature</th><th>Standard Base64</th><th>Base64URL</th></tr>
+                <tr><td>Character 62</td><td><code>+</code></td><td><code>-</code></td></tr>
+                <tr><td>Character 63</td><td><code>/</code></td><td><code>_</code></td></tr>
+                <tr><td>Padding</td><td><code>=</code> added</td><td>Stripped</td></tr>
+                <tr><td>URL safe</td><td>No</td><td>Yes</td></tr>
+                <tr><td>Filename safe</td><td>No</td><td>Yes</td></tr>
+                <tr><td>RFC</td><td>RFC 4648 sec 4</td><td>RFC 4648 sec 5</td></tr>
+                <tr><td>JS function</td><td><code>btoa()</code></td><td>Custom (see below)</td></tr>
+                <tr><td>Used in</td><td>Email, data URIs, Basic Auth</td><td>JWT, URL params, OAuth tokens</td></tr>
+            </table>
+
+            <h2>Real-World Example</h2>
+            <p>Let us encode the string <code>Hello, World! How are you?</code> in both formats:</p>
+
+            <h3>Standard Base64</h3>
+            <pre>SGVsbG8sIFdvcmxkISBIb3cgYXJlIHlvdT8=</pre>
+            <p>Notice the <code>=</code> padding at the end, and all characters are URL-safe in this particular example. Now let us try a string that contains binary data:</p>
+
+            <h3>Base64URL Example</h3>
+            <p>When standard Base64 encodes binary data, it often produces <code>+</code> and <code>/</code> characters. For example, encoding 3 bytes <code>[0x3E, 0xBF, 0x1A]</code>:</p>
+            <ul>
+                <li><strong>Standard Base64:</strong> <code>Pr8a</code> (no URL-unsafe chars here either)</li>
+                <li><strong>With more complex binary:</strong> Standard produces <code>Pj+/Gg==</code> which contains <code>+</code> and <code>/</code> and <code>=</code></li>
+                <li><strong>Base64URL version:</strong> <code>Pj-_Gg</code> (+, / replaced; padding stripped)</li>
+            </ul>
+
+            <h2>Why Base64URL Matters for JWT</h2>
+            <p>JWT (JSON Web Token) is the most common use case for Base64URL. A JWT consists of three Base64URL-encoded segments separated by dots:</p>
+            <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNqPZAmYgCgP</pre>
+            <p>If standard Base64 were used instead, the tokens would break when used in URL query parameters or HTTP headers. The <code>+</code> would be interpreted as a space, and <code>/</code> would confuse URL path parsers.</p>
+
+            <h2>How to Convert Between Base64 and Base64URL</h2>
+            <p>You can use our <a href="/">Base64 Encode Decode tool</a> which supports both Standard Base64 and Base64URL modes. Simply switch the mode pill at the top of the tool.</p>
+
+            <p>In JavaScript, converting between them is straightforward:</p>
+            <pre>// Standard to Base64URL
+function toBase64URL(b64){
+    return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+// Base64URL to Standard
+function fromBase64URL(b64url){
+    var str = b64url.replace(/-/g, '+').replace(/_/g, '/');
+    while(str.length % 4) str += '=';
+    return str;
+}
+
+// Encode directly to Base64URL
+function encodeBase64URL(str){
+    var bytes = new TextEncoder().encode(str);
+    var binary = String.fromCharCode.apply(null, bytes);
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}</pre>
+
+            <p>In Node.js:</p>
+            <pre>// Encode to Base64URL
+var b64url = Buffer.from('Hello, World!').toString('base64')
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+// "SGVsbG8sIFdvcmxkIQ"
+
+// Decode from Base64URL
+var decoded = Buffer.from(b64url, 'base64').toString();
+// "Hello, World!"</pre>
+
+            <p>In Python:</p>
+            <pre>import base64
+
+# Encode to Base64URL
+b64url = base64.urlsafe_b64encode(b"Hello, World!").decode().rstrip('=')
+# "SGVsbG8sIFdvcmxkIQ"
+
+# Decode from Base64URL
+decoded = base64.urlsafe_b64decode(b64url + '==').decode()
+# "Hello, World!"</pre>
+
+            <h2>When to Use Each</h2>
+
+            <h3>Use Standard Base64 when:</h3>
+            <ul>
+                <li>Embedding images as data URIs in HTML/CSS</li>
+                <li>Encoding email attachments (MIME)</li>
+                <li>Storing binary data in JSON (the + and / are escaped)</li>
+                <li>Working with legacy systems that expect standard Base64</li>
+            </ul>
+
+            <h3>Use Base64URL when:</h3>
+            <ul>
+                <li>Creating JWT tokens (JSON Web Tokens)</li>
+                <li>Passing encoded data in URL query parameters</li>
+                <li>Creating OAuth tokens and API keys</li>
+                <li>Generating short, filename-safe identifiers</li>
+                <li>Any situation where +, /, or = would cause problems</li>
+            </ul>
+
+            <h2>Summary</h2>
+            <p>The difference between Base64 and Base64URL is small but critical. By swapping just two characters (+/- and //_) and removing padding, Base64URL makes encoded data safe for URLs, filenames, and JWT tokens. Standard Base64 remains the right choice for data URIs, MIME email, and general binary-to-text conversion.</p>
+
+            <p>Try both modes with our <a href="/">free Base64 encoder/decoder</a> that supports Standard Base64 and Base64URL side by side.</p>
+
+            <div class="cta-box">
+                <p><strong>Try it now:</strong></p>
+                <a href="/" class="btn">Base64 Encode/Decode Tool</a>
+                <br><br>
+                <a href="/blog/what-is-base64-encoding" style="font-size:.85rem;color:#2563eb">Read: What Is Base64 Encoding - Complete Guide</a>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <p>devb64.com - Free online developer tools. All processing happens in-browser.</p>
+    </div>
+</footer>
+</body>
+</html>
